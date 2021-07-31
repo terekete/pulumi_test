@@ -1,0 +1,40 @@
+steps:
+  - name: 'gcr.io/cloud-builders/gcloud'
+    id: 'get-key'
+    entrypoint: 'bash'
+    dir: .
+    args:
+    - '-c'
+    - |
+      gcloud secrets versions access latest --secret="github" --project="intrepid-memory-321513" > /root/.ssh/id_rsa
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'add-key'
+    entrypoint: 'bash'
+    dir: .
+    args:
+    - '-c'
+    - |
+      chmod 600 /root/.ssh/id_rsa
+      cat <<EOF >/root/.ssh/config
+      Hostname github.com
+      IdentifyFile /root/.ssh/id_rsa
+      EOF
+      ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'crlf'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      git config --global core.autocrlf input
+      git reset --hard
+      git clean -fdx
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
