@@ -38,7 +38,7 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-  - name: 'gcr.io/intrepid-memory-321513/pulumi:latest'
+  - name: 'gcr.io/intrepid-memory-321513/pulumi'
     id: 'pulumi-test'
     entrypoint: 'bash'
     args:
