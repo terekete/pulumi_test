@@ -44,7 +44,7 @@ steps:
     args:
     - '-c'
     - |
-      pulumi versions
+      pulumi version
     volumes:
     - name: 'ssh'
       path: /root/.ssh
