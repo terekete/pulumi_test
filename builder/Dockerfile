@@ -1,3 +1,5 @@
 FROM python
 
-RUN python --version
+RUN curl -fsSL https://get.pulumi.com | sh
+
+pulumi
