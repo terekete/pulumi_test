@@ -38,12 +38,10 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-  - name: 'gcr.io/cloud-builders/gcloud'
+  - name: 'gcr.io/cloud-builders/docker'
     id: 'build-docker'
     entrypoint: 'bash'
-    args: [
-      './scripts/build-docker.sh'
-    ]
+    args: ['build', '--tag=gcr.io/intrepid-memory-321513/pulumi:latest', '.']
     volumes:
     - name: 'ssh'
       path: /root/.ssh
