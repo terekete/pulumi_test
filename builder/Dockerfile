@@ -1,3 +1,3 @@
 FROM python
 
-RUN python -version
+RUN python --version
