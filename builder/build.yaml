@@ -40,8 +40,7 @@ steps:
       path: /root/.ssh
   - name: 'gcr.io/cloud-builders/docker'
     id: 'build-docker'
-    entrypoint: 'bash'
-    args: ['build', '--tag=gcr.io/intrepid-memory-321513/pulumi:latest', '/workspace/builder/']
+    args: ['build', '--tag=gcr.io/intrepid-memory-321513/pulumi:latest', '.']
     volumes:
     - name: 'ssh'
       path: /root/.ssh
