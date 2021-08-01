@@ -38,7 +38,7 @@ steps:
     volumes:
     - name: 'ssh'
       path: /root/.ssh
-  - name: 'gcr.io/cloud-builders/docker'
+  - name: 'gcr.io/cloud-builders/gcloud'
     id: 'build-docker'
     entrypoint: 'bash'
     args: [
