@@ -2,4 +2,4 @@
 
 ls -la
 pwd
-docker build -t pulumi:latest ./builder/
+docker build -t pulumi:latest /workspace/builder/
