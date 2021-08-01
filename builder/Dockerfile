@@ -1,3 +1,3 @@
-FROM python3:latest
+FROM 3.7-slim:latest
 
 RUN python -version
