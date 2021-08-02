@@ -30,9 +30,9 @@ git remote -vv
   echo "continuing ..."
 }
 
-# if [[ ! -z "${PR_NUMBER}" ]]; then
-#   git fetch origin "pull/${PR_NUMBER}/head":feature
-#   git fetch --unshallow
-# else
-#   git branch -m feature
-# fi
+if [[ ! -z "${PR_NUMBER}" ]]; then
+  git fetch origin "pull/${PR_NUMBER}/head":feature
+  git fetch --unshallow
+else
+  ls -la
+fi
