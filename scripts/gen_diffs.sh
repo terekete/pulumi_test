@@ -36,3 +36,10 @@ if [[ ! -z "${PR_NUMBER}" ]]; then
 else
   git branch -m feature
 fi
+
+git fetch origin "${BASE_BRANCH}":base-branch
+git checkout base-branch
+git diff --name-only feature...base-branch > POTENTIAL_CONFLICTS.txt
+
+echo "Potential conflicts: "
+cat POTENTIAL_CONFLICTS.txt
