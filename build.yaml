@@ -45,8 +45,8 @@ steps:
       '/workspace/scripts/gen_diffs.sh'
     ]
     volumes:
-      - name: 'ssh'
-        path: /root/.ssh
+    - name: 'ssh'
+      path: /root/.ssh
     env: [
       'BASE_REPO_URL=git@github.com:terekete/pulumi_test.git',
       'BASE_BRANCH=main',
