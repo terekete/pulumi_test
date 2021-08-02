@@ -34,5 +34,5 @@ if [[ ! -z "${PR_NUMBER}" ]]; then
   git fetch origin "pull/${PR_NUMBER}/head":feature
   git fetch --unshallow
 else
-  ls -la
+  git branch -m feature
 fi
