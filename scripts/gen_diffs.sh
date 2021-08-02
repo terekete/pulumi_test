@@ -19,3 +19,22 @@ git remote | xargs -n1 git remote remove
 git remote add origin ${BASE_REPO_URL}
 git remote -vv
 
+{
+  git branch -D base-branch
+} || {
+  echo "continuing ..."
+}
+{
+  git branch -D feature
+} || {
+  echo "coninuing ..."
+}
+
+if [[! -z "$OR_NUMBER" ]]; then
+  git fetch origin "pull/${PR_NUMBER}/head":feature
+  git fetch --unshallow
+else
+  git branch -m feature
+fi
+
+git fetch origin "${BASE_BRANCH}":base-branch
