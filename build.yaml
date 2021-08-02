@@ -50,7 +50,7 @@ steps:
     env: [
       'BASE_REPO_URL=git@github.com:terekete/pulumi_test.git',
       'BASE_BRANCH=main',
-      'PR_NUMBER=${_PR_NUMBER}'
+      'PR_NUMBER=${_PR_NUMBER}',
     ]
   # - name: 'gcr.io/intrepid-memory-321513/pulumi'
   #   id: 'pulumi-test'

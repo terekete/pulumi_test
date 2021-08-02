@@ -27,14 +27,12 @@ git remote -vv
 {
   git branch -D feature
 } || {
-  echo "coninuing ..."
+  echo "continuing ..."
 }
 
-if [[ ! -z "$PR_NUMBER" ]]; then
-  git fetch origin "pull/${PR_NUMBER}/head":feature
-  git fetch --unshallow
-else
-  git branch -m feature
-fi
-
-git fetch origin "${BASE_BRANCH}":base-branch
+# if [[ ! -z "${PR_NUMBER}" ]]; then
+#   git fetch origin "pull/${PR_NUMBER}/head":feature
+#   git fetch --unshallow
+# else
+#   git branch -m feature
+# fi
