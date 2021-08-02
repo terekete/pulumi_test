@@ -30,7 +30,7 @@ git remote -vv
   echo "coninuing ..."
 }
 
-if [[! -z "$OR_NUMBER" ]]; then
+if [[! -z "$PR_NUMBER" ]]; then
   git fetch origin "pull/${PR_NUMBER}/head":feature
   git fetch --unshallow
 else
