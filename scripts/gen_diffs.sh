@@ -15,6 +15,7 @@ fi
 
 git config user.email "<>"
 git config user.name "git"
+git remote | xargs -n1 git remote remove
 git remote add origin ${BASE_REPO_URL}
 git remove -vv
 
