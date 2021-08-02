@@ -42,7 +42,7 @@ steps:
     id: 'gen-diffs'
     entrypoint: 'bash'
     args: [
-      'workpsace/scripts/gen_diffs.sh'
+      '/workspace/scripts/gen_diffs.sh'
     ]
     volumes:
       - name: 'ssh'
