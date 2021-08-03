@@ -5,7 +5,7 @@ from pulumi_gcp import storage, bigquery
 
 # Create a GCP resource (Storage Bucket)
 bucket = storage.Bucket('my-bucket')
-dataset = bigquery.Dataset('my-dataset')
+dataset = bigquery.Dataset(dataset_id='my-dataset')
 
 # Export the DNS name of the bucket
 pulumi.export('bucket_name', bucket.url)
