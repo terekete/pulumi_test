@@ -53,7 +53,7 @@ DIFF_TEAMS=""
 
 for file in $DIFF
 do
-  if [[ "$file" =~ ^teams/[^/]*/ ]]
+  if [[ "$file" =~ ^teams/[^/]*/[^/]*/ ]]
   then
     DIFF_TEAMS+="${BASH_REMATCH[0]}\n"
   fi
@@ -75,7 +75,7 @@ do
 done
 
 if [[ -s DIFF_TEAMS.txt ]]; then
-  printf "\n*** Change occured on dataset definition ***\n"
+  printf "\n*** Change occured on team definition ***\n"
   cat DIFF_TEAMS.txt
 fi
 
