@@ -52,16 +52,16 @@ steps:
       'BASE_BRANCH=${_BASE_BRANCH}',
       'PR_NUMBER=${_PR_NUMBER}',
     ]
-  # - name: 'gcr.io/intrepid-memory-321513/pulumi'
-  #   id: 'pulumi-test'
-  #   entrypoint: 'bash'
-  #   args:
-  #   - '-c'
-  #   - |
-  #     pulumi version
-  #   volumes:
-  #   - name: 'ssh'
-  #     path: /root/.ssh
+  - name: 'gcr.io/intrepid-memory-321513/pulumi'
+    id: 'pulumi-test'
+    entrypoint: 'bash'
+    args:
+    - '-c'
+    - |
+      pulumi version
+    volumes:
+    - name: 'ssh'
+      path: /root/.ssh
 
 options:
   substitution_option: 'ALLOW_LOOSE'
