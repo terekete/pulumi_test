@@ -52,6 +52,23 @@ steps:
       'BASE_BRANCH=${_BASE_BRANCH}',
       'PR_NUMBER=${_PR_NUMBER}',
     ]
+  - name: 'gcr.io/cloud-builders/git'
+    id: create-staging-dir'
+    entrypoint: 'bash'
+    args:
+    - -exc
+    - |
+      mkdir staging
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'build-datasets'
+    entrypoint: 'bash'
+    args: [
+      '/workspace/scripts/build_datasets.sh'
+    ]
+    env: [
+      'PROJECT_ID=${_KEY_PROJECT}'
+    ]
+    waitFor: ['create-staging-dir']
   - name: 'gcr.io/intrepid-memory-321513/pulumi'
     id: 'pulumi-test'
     entrypoint: 'bash'
