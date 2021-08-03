@@ -90,3 +90,4 @@ fi
 
 
 ls -la
+cat DIFF_TOTAL.txt
