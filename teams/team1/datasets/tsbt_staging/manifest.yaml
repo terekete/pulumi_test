@@ -1,0 +1,6 @@
+version: v1
+type: dataset
+description: This is a test table.
+flags:
+  default_table_expiration:
+  default_partition_expiration:
