@@ -53,7 +53,7 @@ steps:
       'PR_NUMBER=${_PR_NUMBER}',
     ]
   - name: 'gcr.io/cloud-builders/git'
-    id: create-staging-dir'
+    id: 'create-staging-dir'
     entrypoint: 'bash'
     args:
     - -exc
