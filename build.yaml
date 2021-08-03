@@ -20,7 +20,7 @@ steps:
       chmod 600 /root/.ssh/id_rsa
       cat <<EOF >/root/.ssh/config
       Hostname github.com
-      IdentifyFile /root/.ssh/id_rsa
+      IdentityFile /root/.ssh/id_rsa
       EOF
       ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
     volumes:
