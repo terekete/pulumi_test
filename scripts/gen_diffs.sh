@@ -87,3 +87,6 @@ if [[ -s CONFLICTS.txt ]]; then
   echo "The following files have been changed in the base:"
   cat CONFLICTS.txt
 fi
+
+
+ls -la
