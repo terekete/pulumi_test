@@ -43,9 +43,6 @@ git diff --name-only feature...base-branch > POTENTIAL_CONFLICTS.txt
 git merge --no-ff feature
 git status
 
-echo "Potential conflicts: "
-cat POTENTIAL_CONFLICTS.txt
-
 
 #! /bin/bash
 BUILD_DIFF_FILE="build-diff-file.txt"
@@ -77,8 +74,10 @@ do
   done
 done
 
-printf "\n*** Change occured on dataset definition ***\n"
-cat DIFF_DATASETS.txt
+if [[ -s DIFF_DATASETS.txt ]]; then
+  printf "\n*** Change occured on dataset definition ***\n"
+  cat DIFF_DATASETS.txt
+fi
 
 if [[ -s CONFLICTS.txt ]]; then
   echo ""
