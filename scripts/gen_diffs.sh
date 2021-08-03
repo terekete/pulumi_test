@@ -53,7 +53,7 @@ DIFF_TEAMS=""
 
 for file in $DIFF
 do
-  if [[ "$file" =~ ^teams/[^/]*/dataset.yaml ]]
+  if [[ "$file" =~ ^teams/[^/]*/ ]]
   then
     echo "REMATCH[0]: ${BASH_REMATCH[0]}"
     echo "REMATCH[1]: ${BASH_REMATCH[1]}" 
