@@ -46,3 +46,43 @@ git status
 echo "Potential conflicts: "
 cat POTENTIAL_CONFLICTS.txt
 
+
+#! /bin/bash
+BUILD_DIFF_FILE="build-diff-file.txt"
+DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
+
+DIFF_DATASETS=""
+
+
+for file in $DIFF
+do
+  if [[ "$file" =~ ^teams/[^/]*/datasets/[^/]*/ ]]
+  then
+    DIFF_DATASETS+="${BASH_REMATCH[0]}\n"
+  fi
+done
+
+printf "${DIFF_DATASETS}" | sort | uniq > DIFF_DATASETS.txt
+
+cat DIFF_DATASETS.txt > DIFF_TOTAL.txt
+
+touch CONFLICTS.txt
+cat POTENTIAL_CONFLICTS.txt | while read file
+do
+  cat DIFF_TOTAL.txt | while read diff_path
+  do
+    if [[ $file =~ $diff_path ]]; then
+      echo $file >> CONFLICTS.txt
+    fi
+  done
+done
+
+printf "\n*** Change occured on dataset definition ***\n"
+cat DIFF_DATASETS.txt
+
+if [[ -s CONFLICTS.txt ]]; then
+  echo ""
+  echo "Warning - there are conflicting changes in the base branch."
+  echo "The following files have been changed in the base:"
+  cat CONFLICTS.txt
+fi
