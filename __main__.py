@@ -10,10 +10,10 @@ from pulumi_gcp import storage, bigquery
 # pulumi.export('bucket_name', bucket.url)
 
 
-# print("TESTING")
-# with open('/workspace/DIFF_DATASETS.txt', 'r') as reader:
-#     lines = reader.readlines()
-#     print('LINE: ' + lines)
+print("TESTING")
+with open('/workspace/DIFF_DATASETS.txt', 'r') as reader:
+    lines = reader.readlines()
+    print('LINE: ' + lines)
 
 
 # with open('manifest.yaml') as f:
