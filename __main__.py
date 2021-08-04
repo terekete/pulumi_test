@@ -10,7 +10,7 @@
 # pulumi.export('bucket_name', bucket.url)
 
 
-
+print("TESTING")
 with open('/workspace/DIFF_DATASETS.txt', 'r') as reader:
     line = reader.readline()
     while line != '':
