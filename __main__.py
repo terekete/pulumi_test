@@ -14,6 +14,6 @@ print("TESTING")
 with open('/workspace/DIFF_DATASETS.txt', 'r') as reader:
     line = reader.readline()
     while line != '':
-        print(line, end='')
+        print("LINE: " + line, end='')
         line = reader.readline()
 
