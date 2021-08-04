@@ -11,7 +11,5 @@
 
 
 
-import os
-
 with open('DIFF_DATASETS.txt') as reader:
     print(reader.read())
