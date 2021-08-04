@@ -1,4 +1,4 @@
-
+import yaml
 import pulumi
 from pulumi_gcp import storage, bigquery
 
@@ -12,8 +12,10 @@ pulumi.export('bucket_name', bucket.url)
 
 print("TESTING")
 with open('/workspace/DIFF_DATASETS.txt', 'r') as reader:
-    line = reader.readline()
-    while line != '':
-        print("LINE: " + line, end='')
-        line = reader.readline()
+    lines = reader.readlines()
+    print('LINE: ' + lines)
 
+
+# with open('manifest.yaml') as f:
+#     my_dict = yaml.safe_load(f)
+#     print(my_dict)
