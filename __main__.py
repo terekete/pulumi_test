@@ -11,5 +11,6 @@
 
 
 
-with open('DIFF_DATASETS.txt') as reader:
+with open('/workspace/DIFF_DATASETS.txt') as reader:
     print(reader.read())
+
