@@ -9,4 +9,4 @@ resource_name: tsbt_fifa_orders
 dataset_id: tsbt_fifa_orders
 partition_expiration_ms: 1000
 table_expiration_ms: 1000
-friendly_name:
+friendly_name: tsbt_fifa_orders
