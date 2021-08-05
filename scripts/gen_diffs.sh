@@ -55,6 +55,9 @@ for file in $DIFF
 do
   if [[ "$file" =~ ^teams/[^/]*/datasets/[^/]*/ ]]
   then
+    echo "0: ${BASH_REMATCH[0]}"
+    echo "1: ${BASH_REMATCH[1]}"
+    echo "2: ${BASH_REMATCH[2]}"
     DIFF_DATASETS+="${BASH_REMATCH[0]}\n"
   fi
 done
