@@ -48,20 +48,20 @@ git status
 BUILD_DIFF_FILE="build-diff-file.txt"
 DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
 
-DIFF_DATASETS=""
+DIFF_LIST=""
 
 
 for file in $DIFF
 do
   if [[ "$file" =~ ^teams/[^/]*/datasets/[^/]*/ ]]
   then
-    DIFF_DATASETS+="${BASH_REMATCH[0]}\n"
+    DIFF_LIST+="${BASH_REMATCH[0]}\n"
   fi
 done
 
-printf "${DIFF_DATASETS}" | sort | uniq > DIFF_DATASETS.txt
+printf "${DIFF_LIST}" | sort | uniq > DIFF_LIST.txt
 
-cat DIFF_DATASETS.txt > DIFF_TOTAL.txt
+cat DIFF_LIST.txt > DIFF_TOTAL.txt
 
 touch CONFLICTS.txt
 cat POTENTIAL_CONFLICTS.txt | while read file
@@ -74,9 +74,9 @@ do
   done
 done
 
-if [[ -s DIFF_DATASETS.txt ]]; then
+if [[ -s DIFF_LIST.txt ]]; then
   printf "\n*** Change occured on team definition ***\n"
-  cat DIFF_DATASETS.txt
+  cat DIFF_LIST.txt
 fi
 
 if [[ -s CONFLICTS.txt ]]; then
