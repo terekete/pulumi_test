@@ -12,7 +12,6 @@ from pulumi_gcp import storage, bigquery
 
 f = open('/workspace/DIFF_DATASETS.txt')
 temp = f.read().splitlines()
-temp = [line[:-1] for line in file]
 print(temp)
 
 # with open('manifest.yaml') as f:
