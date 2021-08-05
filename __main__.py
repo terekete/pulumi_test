@@ -14,6 +14,7 @@ f = open('/workspace/DIFF_DATASETS.txt')
 temp = f.read().splitlines()
 print(temp)
 
-# with open('manifest.yaml') as f:
-#     my_dict = yaml.safe_load(f)
-#     print(my_dict)
+for path in temp:
+    with open('manifest.yaml') as f:
+        my_dict = yaml.safe_load(f)
+    print(my_dict)
