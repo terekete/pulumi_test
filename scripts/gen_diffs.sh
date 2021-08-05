@@ -43,6 +43,8 @@ git diff --name-only feature...base-branch > POTENTIAL_CONFLICTS.txt
 git merge --no-ff feature
 git status
 
+echo "POTENTIAL CONFLICTS: "
+cat POTENTIAL_CONFLICTS.txt
 
 #! /bin/bash
 BUILD_DIFF_FILE="build-diff-file.txt"
