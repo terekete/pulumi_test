@@ -1,6 +1,0 @@
-name: layer_two
-runtime:
-  name: python
-  options:
-  
-description: layer_two

@@ -1,0 +1,12 @@
+version: v1
+type: dataset
+metadata:
+  cost_center:
+  dep:
+team: tsbt
+description: "Table for OMS orders"
+resource_name: tsbt_oms_orders
+dataset_id: tsbt_oms_orders
+partition_expiration_ms: 1000
+table_expiration_ms: 1000
+friendly_name:
