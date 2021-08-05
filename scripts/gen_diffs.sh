@@ -38,8 +38,57 @@ else
 fi
 
 git fetch origin "${BASE_BRANCH}":base-branch
-# git checkout base-branch
-# git diff --name-only feature...base-branch > POTENTIAL_CONFLICTS.txt
+git checkout base-branch
+git diff --name-only feature...base-branch > POTENTIAL_CONFLICTS.txt
+git merge --no-ff feature
+git status
 
-# echo "Potential conflicts: "
-# cat POTENTIAL_CONFLICTS.txt
+
+#! /bin/bash
+BUILD_DIFF_FILE="build-diff-file.txt"
+DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
+
+DIFF_DATASETS=""
+
+
+for file in $DIFF
+do
+  if [[ "$file" =~ ^teams/[^/]*/datasets/[^/]*/ ]]
+  then
+    echo "0: ${BASH_REMATCH[0]}"
+    echo "1: ${BASH_REMATCH[1]}"
+    echo "2: ${BASH_REMATCH[2]}"
+    DIFF_DATASETS+="${BASH_REMATCH[0]}\n"
+  fi
+done
+
+printf "${DIFF_DATASETS}" | sort | uniq > DIFF_DATASETS.txt
+
+cat DIFF_DATASETS.txt > DIFF_TOTAL.txt
+
+touch CONFLICTS.txt
+cat POTENTIAL_CONFLICTS.txt | while read file
+do
+  cat DIFF_TOTAL.txt | while read diff_path
+  do
+    if [[ $file =~ $diff_path ]]; then
+      echo $file >> CONFLICTS.txt
+    fi
+  done
+done
+
+if [[ -s DIFF_DATASETS.txt ]]; then
+  printf "\n*** Change occured on team definition ***\n"
+  cat DIFF_DATASETS.txt
+fi
+
+if [[ -s CONFLICTS.txt ]]; then
+  echo ""
+  echo "Warning - there are conflicting changes in the base branch."
+  echo "The following files have been changed in the base:"
+  cat CONFLICTS.txt
+fi
+
+
+ls -la
+cat DIFF_TOTAL.txt
