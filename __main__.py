@@ -16,10 +16,10 @@ print(path_list)
 
 
 # result = [do_something(x) for x in list if list]
-
-for path in path_list:
-    with open(path + 'manifest.yaml') as f:
-        manifest = yaml.safe_load(f)
-        print(manifest)
-        dataset = bigquery.Dataset(resource_name=manifest['name'], dataset_id=manifest['name'])
+if path_list:
+    for path in path_list:
+        with open(path + 'manifest.yaml') as f:
+            manifest = yaml.safe_load(f)
+            print(manifest)
+            dataset = bigquery.Dataset(resource_name=manifest['name'], dataset_id=manifest['name'])
 
