@@ -17,7 +17,7 @@ def update(path):
         dataset = bigquery.Dataset(resource_name=manifest['resource_name'], dataset_id=manifest['dataset_id'])
 
 
-f = open('/workspace/DIFF_LIST.txt'):
+f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
 
