@@ -14,7 +14,11 @@ def dataset(manifest):
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         description=manifest['description'],
-        labels={'cost_center': manifest['metadata']['cost_center']}
+        labels={'cost_center': manifest['metadata']['cost_center'], 'dep': manifest['metadata']['dep']},
+        partition_expiration_ms=manifest['partition_expiration_ms'],
+        table_expiration_ms=manifest['table_expiration_ms'],
+        delete_contents_on_destroy=True,
+        location='northamerica-northeast1'
     )
 
 
