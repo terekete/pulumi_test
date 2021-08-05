@@ -1,7 +1,7 @@
-# version: v1
-# type: dataset
-# name: tbst_fifa_orders
-# description: This is a test table.
-# flags:
-#   default_table_expiration: 1000
-#   default_partition_expiration: 1000
+version: v1
+type: dataset
+name: tbst_fifa_orders
+description: This is a test table.
+flags:
+  default_table_expiration: 1000
+  default_partition_expiration: 1000
