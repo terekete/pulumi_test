@@ -14,7 +14,7 @@ def dataset(manifest):
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         description=manifest['description'],
-        labels={'cost_center': manifest['cost_center']}
+        labels=[{'cost_center': manifest['cost_center']}]
     )
 
 
