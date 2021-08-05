@@ -13,8 +13,10 @@ from pulumi_gcp import storage, bigquery
 def update(path):
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        print(manifest)
-        dataset = bigquery.Dataset(resource_name=manifest['resource_name'], dataset_id=manifest['dataset_id'])
+        if manifest['type'] = 'dataset':
+            bigquery.Dataset(resource_name=manifest['resource_name'], dataset_id=manifest['dataset_id'])
+        if manifest['type'] == 'table':
+            print('create table')
 
 
 f = open('/workspace/DIFF_LIST.txt')
