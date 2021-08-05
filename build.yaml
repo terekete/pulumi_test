@@ -20,7 +20,7 @@ steps:
       chmod 600 /root/.ssh/id_rsa
       cat <<EOF >/root/.ssh/config
       Hostname github.com
-      IdentifyFile /root/.ssh/id_rsa
+      IdentityFile /root/.ssh/id_rsa
       EOF
       ssh-keyscan -t rsa github.com > /root/.ssh/known_hosts
     volumes:
@@ -49,9 +49,26 @@ steps:
       path: /root/.ssh
     env: [
       'BASE_REPO_URL=git@github.com:terekete/pulumi_test.git',
-      'BASE_BRANCH=main',
+      'BASE_BRANCH=${_BASE_BRANCH}',
       'PR_NUMBER=${_PR_NUMBER}',
     ]
+  - name: 'gcr.io/cloud-builders/git'
+    id: 'create-staging-dir'
+    entrypoint: 'bash'
+    args:
+    - -exc
+    - |
+      mkdir staging
+  - name: 'gcr.io/intrepid-memory-321513/pulumi'
+    id: 'build-datasets'
+    entrypoint: 'bash'
+    args: [
+      '/workspace/scripts/build_datasets.sh'
+    ]
+    env: [
+      'PROJECT_ID=${_KEY_PROJECT}'
+    ]
+    waitFor: ['create-staging-dir']
   # - name: 'gcr.io/intrepid-memory-321513/pulumi'
   #   id: 'pulumi-test'
   #   entrypoint: 'bash'
