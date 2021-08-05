@@ -9,6 +9,8 @@ from pulumi_gcp import storage, bigquery
 # # Export the DNS name of the bucket
 # pulumi.export('bucket_name', bucket.url)
 
+print(dir(pulumi))
+
 
 def update(path):
     with open(path + 'manifest.yaml') as f:
