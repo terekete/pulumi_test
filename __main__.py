@@ -14,7 +14,12 @@ f = open('/workspace/DIFF_DATASETS.txt')
 path_list = f.read().splitlines()
 print(path_list)
 
+
+# result = [do_something(x) for x in list if list]
+
 for path in path_list:
     with open(path + 'manifest.yaml') as f:
-        my_dict = yaml.safe_load(f)
-    print(my_dict)
+        manifest = yaml.safe_load(f)
+        print(manifest)
+        dataset = bigquery.Dataset(resource_name=manifest['name'], dataset_id=manifest['name'])
+
