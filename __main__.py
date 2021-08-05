@@ -16,7 +16,7 @@ def update(path):
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         print(manifest)
-        dataset = bigquery.Dataset(resource_name=manifest['name'], dataset_id=manifest['name'])
+        dataset = bigquery.Dataset(resource_name=manifest['resource_name'], dataset_id=manifest['dataset_id'])
 
 
 f = open('/workspace/DIFF_DATASETS.txt')

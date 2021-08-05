@@ -63,7 +63,7 @@ steps:
     id: 'build-datasets'
     entrypoint: 'bash'
     args: [
-      '/workspace/scripts/build_datasets.sh'
+      '/workspace/scripts/build_pulumi.sh'
     ]
     env: [
       'PROJECT_ID=${_KEY_PROJECT}'
