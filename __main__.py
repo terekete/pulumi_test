@@ -9,8 +9,6 @@ from pulumi_gcp import storage, bigquery
 # # Export the DNS name of the bucket
 # pulumi.export('bucket_name', bucket.url)
 
-print(dir(pulumi))
-
 
 def update(path):
     with open(path + 'manifest.yaml') as f:
@@ -19,12 +17,7 @@ def update(path):
         dataset = bigquery.Dataset(resource_name=manifest['resource_name'], dataset_id=manifest['dataset_id'])
 
 
-f = open('/workspace/DIFF_DATASETS.txt')
-path_list = f.read().splitlines()
-print(path_list)
-
-
-# result = [do_something(x) for x in list if list]
-for path in path_list:
+f = open('/workspace/DIFF_LIST.txt'):
+for path in f.read().splitlines():
     update(path)
 
