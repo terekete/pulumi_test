@@ -11,10 +11,10 @@ from pulumi_gcp import storage, bigquery
 
 
 f = open('/workspace/DIFF_DATASETS.txt')
-temp = f.read().splitlines()
-print(temp)
+path_list = f.read().splitlines()
+print(path_list)
 
-for path in temp:
-    with open('manifest.yaml') as f:
+for path in path_list:
+    with open(path + 'manifest.yaml') as f:
         my_dict = yaml.safe_load(f)
     print(my_dict)
