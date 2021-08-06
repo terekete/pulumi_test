@@ -38,9 +38,9 @@ def table(manifest: str) -> None:
 def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        if manifest['type'] == 'dataset':
+        if manifest['type'] == 'dataset' and not None:
             dataset(manifest)
-        if manifest['type'] == 'table':
+        if manifest['type'] == 'table' and not None:
             table(manifest)
         else:
             print("Manifest does not exist, please add or remove empty dataset folder")
@@ -56,8 +56,7 @@ def update_access(path: str) -> None:
                 dataset_user_access(manifest, writer, 'WRITER')
         if manifest['type'] == 'table':
             print('table permissions')
-        else:
-            print("Manifest does not exist, please add or remove empty dataset folder")
+
 
 
 f = open('/workspace/DIFF_LIST.txt')
