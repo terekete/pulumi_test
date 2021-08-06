@@ -23,14 +23,13 @@ def dataset_user_access(manifest: str, user: str, role: str) -> None:
         role=role
     )
 
-def update(path):
+def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
-            print(manifest['readers'])
-            # for reader in manifest['readers']:
-            #     dataset_user_access(manifest, reader, 'READER')
+            for reader in manifest['readers']:
+                dataset_user_access(manifest, reader, 'READER')
         if manifest['type'] == 'table':
             print('create table')
 
