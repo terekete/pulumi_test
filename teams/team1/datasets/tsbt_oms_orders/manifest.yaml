@@ -9,4 +9,5 @@ resource_name: tsbt_oms_orders_temp
 dataset_id: tsbt_oms_orders_temp
 partition_expiration_ms: 3600000
 table_expiration_ms: 3600000
-friendly_name:
+friendly_name: tsbt_oms_orders_temp
+readers:
