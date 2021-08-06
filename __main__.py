@@ -47,12 +47,11 @@ def update(path: str) -> None:
 def update_dataset_readers(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        try:
-            if manifest['type'] == 'dataset':
-                for reader in manifest['readers'] or []:
-                    dataset_user_access(manifest, reader, 'READER')
-        except:
-            print("Manifest does not exist, please add or remove folder")
+        if manifest['type'] == 'dataset':
+            for reader in manifest['readers'] or []:
+                dataset_user_access(manifest, reader, 'READER')
+        else:
+            print("Manifest does not exist, please add or remove empty dataset folder")
 
 
 f = open('/workspace/DIFF_LIST.txt')
