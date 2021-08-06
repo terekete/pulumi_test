@@ -15,12 +15,12 @@ def dataset(manifest: str) -> None:
         location='northamerica-northeast1'
     )
 
-def dataset_user_access(manifest, user='gates.mark@gmail.com'):
+def dataset_user_access(manifest: str, user: str, role: str) -> None:
     bigquery.DatasetAccess(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         user_by_email=user,
-        role='READER'
+        role=role
     )
 
 def update(path):
@@ -28,7 +28,8 @@ def update(path):
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
-            dataset_user_access(manifest)
+            for reader in manifest['readers']:
+                dataset_user_access(manifest, reader, 'READER')
         if manifest['type'] == 'table':
             print('create table')
 
