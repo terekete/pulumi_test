@@ -29,7 +29,8 @@ def update(path: str) -> None:
         if manifest['type'] == 'dataset':
             dataset(manifest)
             for reader in manifest['readers']:
-                dataset_user_access(manifest, reader, 'READER')
+                if reader:
+                    dataset_user_access(manifest, reader, 'READER')
         if manifest['type'] == 'table':
             print('create table')
 
