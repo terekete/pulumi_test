@@ -28,9 +28,8 @@ def update(path: str) -> None:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
-            for reader in manifest['readers']:
-                if reader is not None:
-                    dataset_user_access(manifest, reader, 'READER')
+            for reader in manifest['readers'] or []:
+                dataset_user_access(manifest, reader, 'READER')
         if manifest['type'] == 'table':
             print('create table')
 
