@@ -25,3 +25,9 @@ schema: >
         "description": "State where the head office is located"
       }
   ]
+access:
+  readers:
+    - gates.mark@gmail.com
+    - mark.gates@telus.com
+  writers:
+    - gates.mark@gmail.com

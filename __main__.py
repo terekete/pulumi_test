@@ -35,13 +35,16 @@ def table(manifest: str) -> None:
         schema=manifest['schema']
     )
 
+def table_user_access(manifest: str, user: str, role: str) -> None:
+    bigquery.IamPolicy(
+
+    )
+
 def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
-        # if manifest['type'] == 'dataset' and not None:
-        #     dataset(manifest)
         if manifest and manifest['type'] == 'table':
             table(manifest)
 
@@ -57,6 +60,8 @@ def update_access(path: str) -> None:
             #     dataset_user_access(manifest, writer, 'WRITER')
         if manifest['type'] == 'table':
             print('table permissions')
+
+
 
 
 
