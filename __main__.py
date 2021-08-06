@@ -28,7 +28,8 @@ def update(path):
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             d = dataset(manifest)
-            print(d)
+            print(dir(d))
+
         if manifest['type'] == 'table':
             print('create table')
 
