@@ -20,6 +20,7 @@ def dataset_user_access(manifest, user='gates.mark@gmail.com'):
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         user_by_email=user,
+        role='READER'
     )
 
 def update(path):
