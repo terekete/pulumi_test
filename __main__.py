@@ -38,7 +38,7 @@ def table(manifest: str) -> None:
 def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        if manifest['type'] is not None and manifest['type'] == 'dataset':
+        if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
         # if manifest['type'] == 'dataset' and not None:
         #     dataset(manifest)
