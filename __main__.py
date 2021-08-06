@@ -3,8 +3,8 @@ import pulumi
 from pulumi_gcp import storage, bigquery
 
 
-def dataset(manifest):
-    return bigquery.Dataset(
+def dataset(manifest: str) -> None:
+    bigquery.Dataset(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         description=manifest['description'],
@@ -27,9 +27,7 @@ def update(path):
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
-            d = dataset(manifest)
-            print(dir(d))
-
+            dataset(manifest)
         if manifest['type'] == 'table':
             print('create table')
 
