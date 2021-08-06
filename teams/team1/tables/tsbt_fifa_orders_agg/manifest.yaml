@@ -10,3 +10,18 @@ dataset_id: tsbt_fifa_orders
 table_id: tsbt_fifa_orders_agg
 expiration_ms:
 friendly_name: tsbt_fifa_orders_agg
+schema: >
+[
+    {
+      "name": "permalink",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "The Permalink"
+    },
+    {
+      "name": "state",
+      "type": "STRING",
+      "mode": "NULLABLE",
+      "description": "State where the head office is located"
+    }
+]
