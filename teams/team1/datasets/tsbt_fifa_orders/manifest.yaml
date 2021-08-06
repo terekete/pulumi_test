@@ -12,4 +12,3 @@ table_expiration_ms: 3600000
 friendly_name: tsbt_fifa_orders
 readers:
   - gates.mark@gmail.com
-
