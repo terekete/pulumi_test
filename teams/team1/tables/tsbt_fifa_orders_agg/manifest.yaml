@@ -1,27 +1,27 @@
-version: v1
-type: table
-metadata:
-  cost_center: 1
-  dep: 12
-team: tsbt
-description: "Table for FIFA aggregated orders"
-resource_name: tsbt_fifa_orders_agg
-dataset_id: tsbt_fifa_orders_temp
-table_id: tsbt_fifa_orders_agg
-expiration_ms:
-friendly_name: tsbt_fifa_orders_agg
-schema: >
-  [
-      {
-        "name": "permalink",
-        "type": "STRING",
-        "mode": "NULLABLE",
-        "description": "The Permalink"
-      },
-      {
-        "name": "state",
-        "type": "STRING",
-        "mode": "NULLABLE",
-        "description": "State where the head office is located"
-      }
-  ]
+# version: v1
+# type: table
+# metadata:
+#   cost_center: 1
+#   dep: 12
+# team: tsbt
+# description: "Table for FIFA aggregated orders"
+# resource_name: tsbt_fifa_orders_agg
+# dataset_id: tsbt_fifa_orders_temp
+# table_id: tsbt_fifa_orders_agg
+# expiration_ms:
+# friendly_name: tsbt_fifa_orders_agg
+# schema: >
+#   [
+#       {
+#         "name": "permalink",
+#         "type": "STRING",
+#         "mode": "NULLABLE",
+#         "description": "The Permalink"
+#       },
+#       {
+#         "name": "state",
+#         "type": "STRING",
+#         "mode": "NULLABLE",
+#         "description": "State where the head office is located"
+#       }
+#   ]
