@@ -47,7 +47,7 @@ def update(path: str) -> None:
 def update_dataset_readers(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        if manifest['type'] == 'dataset':
+        if manifest['type'] == 'dataset' and not None:
             for reader in manifest['readers'] or []:
                 dataset_user_access(manifest, reader, 'READER')
         else:
