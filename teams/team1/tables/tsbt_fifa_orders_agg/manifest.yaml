@@ -6,7 +6,7 @@ metadata:
 team: tsbt
 description: "Table for FIFA aggregated orders"
 resource_name: tsbt_fifa_orders_agg
-dataset_id: tsbt_fifa_orders
+dataset_id: tsbt_fifa_orders_temp
 table_id: tsbt_fifa_orders_agg
 expiration_ms:
 friendly_name: tsbt_fifa_orders_agg
