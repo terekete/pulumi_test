@@ -1,14 +1,12 @@
 version: v1
 type: table
 metadata:
-  cost_center:
-  dep:
+  cost_center: 1
+  dep: 12
 team: tsbt
-description: "Table for OMS orders"
-resource_name: tsbt_oms_orders_agg
-dataset_id: tsbt_oms_orders_agg
-partition_expiration_ms: 3600000
-table_expiration_ms: 3600000
-friendly_name: tsbt_oms_orders_agg
-readers:
-writers:
+description: "Table for FIFA aggregated orders"
+resource_name: tsbt_fifa_orders_agg
+dataset_id: tsbt_fifa_orders
+table_id: tsbt_fifa_orders_agg
+expiration_ms:
+friendly_name: tsbt_fifa_orders_agg

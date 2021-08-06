@@ -23,11 +23,25 @@ def dataset_user_access(manifest: str, user: str, role: str) -> None:
         role=role
     )
 
-def update_dataset(path: str) -> None:
+def table(manifest: str) -> None:
+    bigquery.Table(
+        resource_name=manifest['resource_name'],
+        dataset_id=manifest['dataset_id'],
+        table_id=manifest['table_id'],
+        deletion_protection=False,
+        expiration_time=manifest['expiration_ms'],
+        friendly_name=manifest['friendly_name'],
+        labels={'cost_center': manifest['metadata']['cost_center'], 'dep': manifest['metadata']['dep']},
+        schema=manifest['schema']
+    )
+
+def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
+        if manifest['type'] == 'table':
+            table(manifest)
 
 
 def update_dataset_readers(path: str) -> None:
@@ -40,4 +54,4 @@ def update_dataset_readers(path: str) -> None:
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
-    update_dataset(path)
+    update(path)
