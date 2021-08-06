@@ -59,11 +59,3 @@ f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
 
-
-
-def Ancestors (otu,tree):
-    try:
-        tree[otu][0][0]
-    except TypeError:
-        print otu, tre[otu]
-        raise
