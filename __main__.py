@@ -50,10 +50,11 @@ def update_access(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
-            for reader in manifest['readers'] or []:
-                dataset_user_access(manifest, reader, 'READER')
-            for writer in manifest['writer'] or []:
-                dataset_user_access(manifest, writer, 'WRITER')
+            [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
+            # for reader in manifest['readers'] or []:
+            #     dataset_user_access(manifest, reader, 'READER')
+            # for writer in manifest['writer'] or []:
+            #     dataset_user_access(manifest, writer, 'WRITER')
         if manifest['type'] == 'table':
             print('table permissions')
 
