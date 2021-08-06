@@ -2,12 +2,6 @@ import yaml
 import pulumi
 from pulumi_gcp import storage, bigquery
 
-# # Create a GCP resource (Storage Bucket)
-# bucket = storage.Bucket('my-bucket')
-# # dataset = bigquery.Dataset(resource_name='my-dataset', dataset_id='my_dataset')
-
-# # Export the DNS name of the bucket
-# pulumi.export('bucket_name', bucket.url)
 
 def dataset(manifest):
     return bigquery.Dataset(
@@ -21,12 +15,20 @@ def dataset(manifest):
         location='northamerica-northeast1'
     )
 
+def dataset_user_access(manifest, user):
+    return bigquery.DatasetAccess(
+        resource_name=manifest['resource_name'],
+        dataset_id=manifest['dataset_id'],
+        user_by_email=user,
+        role='roles/bigquery.jobUser'
+    )
 
 def update(path):
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
-            dataset(manifest)
+            d = dataset(manifest)
+            print(d)
         if manifest['type'] == 'table':
             print('create table')
 
@@ -34,17 +36,3 @@ def update(path):
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
-
-
-# version: v1
-# type: dataset
-# metadata:
-#   cost_center:
-#   dep:
-# team: tsbt
-# description: "Table for FIFA orders"
-# resource_name: tsbt_fifa_orders
-# dataset_id: tsbt_fifa_orders
-# partition_expiration_ms: 1000
-# table_expiration_ms: 1000
-# friendly_name: tsbt_fifa_orders
