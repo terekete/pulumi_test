@@ -44,8 +44,6 @@ def update(path: str) -> None:
         #     dataset(manifest)
         if manifest and manifest['type'] == 'table':
             table(manifest)
-        else:
-            continue
 
 
 def update_access(path: str) -> None:
