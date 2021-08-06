@@ -16,7 +16,7 @@ def dataset(manifest: str) -> None:
     )
 
 def dataset_user_access(manifest, user='gates.mark@gmail.com'):
-    return bigquery.DatasetAccess(
+    bigquery.DatasetAccess(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         user_by_email=user,
@@ -28,6 +28,7 @@ def update(path):
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
+            dataset_user_access(manifest)
         if manifest['type'] == 'table':
             print('create table')
 
