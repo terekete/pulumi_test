@@ -23,17 +23,21 @@ def dataset_user_access(manifest: str, user: str, role: str) -> None:
         role=role
     )
 
-def update(path: str) -> None:
+def update_dataset(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] == 'dataset':
             dataset(manifest)
+
+
+def update_dataset_readers(path: str) -> None:
+    with open(path + 'manifest.yaml') as f:
+        manifest = yaml.safe_load(f)
+        if manifest['type'] == 'dataset':
             for reader in manifest['readers'] or []:
                 dataset_user_access(manifest, reader, 'READER')
-        if manifest['type'] == 'table':
-            print('create table')
 
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
-    update(path)
+    update_dataset(path)
