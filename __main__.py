@@ -45,7 +45,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'table':
             table(manifest)
         else:
-            print("Manifest does not exist, please add or remove empty dataset folder")
+            continue
 
 
 def update_access(path: str) -> None:
