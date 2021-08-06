@@ -15,7 +15,7 @@ def dataset(manifest):
         location='northamerica-northeast1'
     )
 
-def dataset_user_access(manifest, user):
+def dataset_user_access(manifest, user='gates.mark@gmail.com'):
     return bigquery.DatasetAccess(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
