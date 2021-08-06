@@ -47,11 +47,23 @@ def update(path: str) -> None:
 def update_dataset_readers(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
-        if manifest['type'] == 'dataset':
-            for reader in manifest['readers'] or []:
-                dataset_user_access(manifest, reader, 'READER')
+        try:
+            if manifest['type'] == 'dataset':
+                for reader in manifest['readers'] or []:
+                    dataset_user_access(manifest, reader, 'READER')
+        except:
+            print("Manifest does not exist, please add or remove folder")
 
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
+
+
+
+def Ancestors (otu,tree):
+    try:
+        tree[otu][0][0]
+    except TypeError:
+        print otu, tre[otu]
+        raise
