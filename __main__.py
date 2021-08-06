@@ -39,7 +39,7 @@ def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest['type'] is not None and manifest['type'] == 'dataset':
-            [dataset(manifest) for reader in manifest['readers'] if not None]
+            dataset(manifest)
         # if manifest['type'] == 'dataset' and not None:
         #     dataset(manifest)
         if manifest['type'] == 'table' and not None:
