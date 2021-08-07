@@ -1,6 +1,7 @@
 import yaml
 import pulumi
 from pulumi_gcp import storage, bigquery
+from cerberus import Validator
 
 
 def dataset(manifest: str) -> None:
@@ -15,6 +16,7 @@ def dataset(manifest: str) -> None:
         location='northamerica-northeast1'
     )
 
+
 def dataset_user_access(manifest: str, user: str, role: str) -> None:
     bigquery.DatasetAccess(
         resource_name=manifest['resource_name'],
@@ -22,6 +24,7 @@ def dataset_user_access(manifest: str, user: str, role: str) -> None:
         user_by_email=user,
         role=role
     )
+
 
 def table(manifest: str) -> None:
     bigquery.Table(
@@ -35,10 +38,6 @@ def table(manifest: str) -> None:
         schema=manifest['schema']
     )
 
-def table_user_access(manifest: str, user: str, role: str) -> None:
-    bigquery.IamPolicy(
-
-    )
 
 def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
@@ -50,8 +49,7 @@ def update(path: str) -> None:
 
 
 def update_access(path: str) -> None:
-    with open(path + 'manifest.yaml') as f:
-        manifest = yaml.safe_load(f)
+        manifest = load_manifest(path)
         if manifest['type'] is not None and manifest['type'] == 'dataset':
             [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
             # for reader in manifest['readers'] or []:
@@ -62,7 +60,26 @@ def update_access(path: str) -> None:
             print('table permissions')
 
 
+# binding = gcp.bigquery.IamBinding("binding",
+#     project=google_bigquery_table["test"]["project"],
+#     dataset_id=google_bigquery_table["test"]["dataset_id"],
+#     table_id=google_bigquery_table["test"]["table_id"],
+#     role="roles/bigquery.dataOwner",
+#     members=["user:jane@example.com"])
 
+def load_manifest(path):
+    with open(path + 'manifest.yaml', 'r') as stream:
+        try:
+            return yaml.safe_load(stream)
+        except yaml.YAMLError as exception:
+            raise exception
+
+
+def validate_manifest(manifest, type):
+    schema = eval(open('./schema.py', 'r').read())
+    validator = Validator(schema)
+    print(validator.validate(manifest, schema))
+    print(validator.errors)
 
 
 f = open('/workspace/DIFF_LIST.txt')
