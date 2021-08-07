@@ -23,6 +23,12 @@ schema: >
         "type": "STRING",
         "mode": "NULLABLE",
         "description": "State where the head office is located"
+      },
+      {
+        "name": "province",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Province where the head office is located"
       }
   ]
 access:
