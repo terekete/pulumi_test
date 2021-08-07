@@ -69,7 +69,7 @@ def table_user_access(manifest, table_ref) -> None:
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         table_id=table_ref.table_id,
-        role='roles/bigquery.jobUser',
+        role='roles/bigquery.dataViewer',
         members=readers
     )
 
