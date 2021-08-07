@@ -40,6 +40,5 @@ schema: >
 access:
   readers:
     - gates.mark@gmail.com
-    - mark.gates@telus.com
   writers:
     - gates.mark@gmail.com
