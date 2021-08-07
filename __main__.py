@@ -64,7 +64,7 @@ def table_user_access(manifest) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
     print(readers)
-    gcp.bigquery.IamBinding(
+    bigquery.IamBinding(
         dataset_id=manifest['dataset_id'],
         table_id=manifest['table_id'],
         role='roles/bigquery.jobUser',
