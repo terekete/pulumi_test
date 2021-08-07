@@ -1,0 +1,44 @@
+version: v1
+type: table
+metadata:
+  cost_center: 1
+  dep: 12
+team: tsbt
+description: "Table for OMS aggregated orders"
+resource_name: tsbt_oms_orders_agg
+dataset_id: tsbt_oms_orders_temp
+table_id: tsbt_oms_orders_agg
+expiration_ms:
+friendly_name: tsbt_oms_orders_agg
+schema: >
+  [
+      {
+        "name": "permalink",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "The Permalink"
+      },
+      {
+        "name": "state",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "State where the head office is located"
+      },
+      {
+        "name": "province",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Province where the head office is located"
+      },
+      {
+        "name": "country",
+        "type": "STRING",
+        "mode": "NULLABLE",
+        "description": "Country where the head office is located"
+      }
+  ]
+access:
+  readers:
+    - gates.mark@gmail.com
+  writers:
+    - gates.mark@gmail.com
