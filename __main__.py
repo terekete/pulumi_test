@@ -47,6 +47,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'table':
             t = table(manifest)
             print(dir(t))
+            print(t.table_id)
             
 
 
