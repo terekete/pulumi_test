@@ -45,8 +45,8 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
         if manifest and manifest['type'] == 'table':
-            table = table(manifest)
-            print(dir(table))
+            t = table(manifest)
+            print(dir(t))
             
 
 
