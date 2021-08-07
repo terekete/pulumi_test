@@ -90,5 +90,5 @@ def validate_manifest(manifest, type):
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
-    update_access(path)
+    # update_access(path)
 
