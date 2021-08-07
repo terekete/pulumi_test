@@ -63,6 +63,7 @@ def update_access(path: str) -> None:
 def table_user_access(manifest) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
+    print("READERS:" + readers)
     gcp.bigquery.IamBinding(
         dataset_id=manifest['dataset_id'],
         table_id=manifest['table_id'],
