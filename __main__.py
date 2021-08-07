@@ -64,12 +64,12 @@ def table_user_access(manifest) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
     print("READERS:" + readers)
-    gcp.bigquery.IamBinding(
-        dataset_id=manifest['dataset_id'],
-        table_id=manifest['table_id'],
-        role='roles/bigquery.jobUser',
-        members=readers
-    )
+    # gcp.bigquery.IamBinding(
+    #     dataset_id=manifest['dataset_id'],
+    #     table_id=manifest['table_id'],
+    #     role='roles/bigquery.jobUser',
+    #     members=readers
+    # )
 
 
 def load_manifest(path):
@@ -90,5 +90,5 @@ def validate_manifest(manifest, type):
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
-    # update_access(path)
+    update_access(path)
 
