@@ -27,7 +27,7 @@ def dataset_user_access(manifest: str, user: str, role: str) -> None:
 
 
 def table(manifest: str) -> None:
-    bigquery.Table(
+    return bigquery.Table(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
         table_id=manifest['table_id'],
@@ -45,22 +45,24 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
         if manifest and manifest['type'] == 'table':
-            table(manifest)
+            table = table(manifest)
+            print(dir(table))
+            
 
 
-def update_access(path: str) -> None:
-        manifest = load_manifest(path)
-        if manifest and manifest['type'] == 'dataset':
-            # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
-            for reader in manifest['readers'] or []:
-                dataset_user_access(manifest, reader, 'READER')
-            # for writer in manifest['writer'] or []:
-            #     dataset_user_access(manifest, writer, 'WRITER')
-        if manifest and manifest['type'] == 'table':
-            table_user_access(manifest)
+# def update_access(path: str) -> None:
+#         manifest = load_manifest(path)
+#         if manifest and manifest['type'] == 'dataset':
+#             # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
+#             for reader in manifest['readers'] or []:
+#                 dataset_user_access(manifest, reader, 'READER')
+#             # for writer in manifest['writer'] or []:
+#             #     dataset_user_access(manifest, writer, 'WRITER')
+#         if manifest and manifest['type'] == 'table':
+#             table_user_access(manifest)
 
 
-def table_user_access(manifest) -> None:
+def table_user_access(manifest, table_ref) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
     print(readers)
@@ -91,5 +93,5 @@ def validate_manifest(manifest, type):
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
-    update_access(path)
+    # update_access(path)
 
