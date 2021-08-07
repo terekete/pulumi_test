@@ -46,7 +46,7 @@ def update(path: str) -> None:
             dataset(manifest)
         if manifest and manifest['type'] == 'table':
             t = table(manifest)
-            print(dir(t))
+            table_user_access(manifest, t)
 
 
 # def update_access(path: str) -> None:
@@ -68,7 +68,7 @@ def table_user_access(manifest, table_ref) -> None:
     bigquery.IamBinding(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
-        table_id=manifest['table_id'],
+        table_id=table_ref,
         role='roles/bigquery.jobUser',
         members=readers
     )
