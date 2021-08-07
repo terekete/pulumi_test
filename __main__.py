@@ -50,22 +50,26 @@ def update(path: str) -> None:
 
 def update_access(path: str) -> None:
         manifest = load_manifest(path)
-        if manifest['type'] is not None and manifest['type'] == 'dataset':
+        if manifest is not None and manifest['type'] == 'dataset':
             [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
             # for reader in manifest['readers'] or []:
             #     dataset_user_access(manifest, reader, 'READER')
             # for writer in manifest['writer'] or []:
             #     dataset_user_access(manifest, writer, 'WRITER')
         if manifest['type'] == 'table':
-            print('table permissions')
+            table_user_access(manifest)
 
 
-# binding = gcp.bigquery.IamBinding("binding",
-#     project=google_bigquery_table["test"]["project"],
-#     dataset_id=google_bigquery_table["test"]["dataset_id"],
-#     table_id=google_bigquery_table["test"]["table_id"],
-#     role="roles/bigquery.dataOwner",
-#     members=["user:jane@example.com"])
+def table_user_access(manifest) -> None:
+    readers = manifest['access']['readers']
+    readers = ["user:" + reader for reader in readers]
+    gcp.bigquery.IamBinding(
+        dataset_id=manifest['dataset_id'],
+        table_id=manifest['table_id'],
+        role='roles/bigquery.jobUser',
+        members=readers
+    )
+
 
 def load_manifest(path):
     with open(path + 'manifest.yaml', 'r') as stream:
