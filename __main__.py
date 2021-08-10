@@ -89,7 +89,7 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(validator.errors)
+        raise Exception(validator.errors)
 
 
 f = open('/workspace/DIFF_LIST.txt')
