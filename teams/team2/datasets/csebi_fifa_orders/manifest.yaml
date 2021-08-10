@@ -1,8 +1,9 @@
 version: v1
 type: dataset
 metadata:
-  cost_center:
-  dep:
+  cost_center: '12'
+  dep: '1'
+  bds: gates.mark@gmail.com
 team: csebi
 description: "Table for FIFA orders"
 resource_name: csebi_fifa_orders_temp
@@ -10,5 +11,8 @@ dataset_id: csebi_fifa_orders_temp
 partition_expiration_ms: 3600000
 table_expiration_ms: 3600000
 friendly_name: csebi_fifa_orders_temp
-readers:
-writers:
+access:
+  readers:
+    - gates.mark@gmail.com
+  writers:
+    - gates.mark@gmail.com

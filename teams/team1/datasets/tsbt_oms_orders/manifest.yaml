@@ -3,6 +3,7 @@ type: dataset
 metadata:
   cost_center: 1
   dep: 2
+  bds: gates.mark@gmail.com
 team: tsbt
 description: "Table for OMS orders"
 resource_name: tsbt_oms_orders_temp
@@ -10,5 +11,8 @@ dataset_id: tsbt_oms_orders_temp
 partition_expiration_ms: 3600000
 table_expiration_ms: 3600000
 friendly_name: tsbt_oms_orders_temp
-readers:
-writers:
+access:
+  readers:
+    - gates.mark@gmail.com
+  writers:
+    - gates.mark@gmail.com

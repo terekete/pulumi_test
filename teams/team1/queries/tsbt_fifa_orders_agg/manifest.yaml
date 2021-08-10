@@ -1,0 +1,17 @@
+version: v1
+type: query
+metadata:
+  cost_center: 1
+  dep: 12
+  bds: gates.mark@gmail.com
+team: tsbt
+display_name: "Table for FIFA aggregated orders"
+resource_name: tsbt_fifa_orders_schd
+data_refresh_window_days: 1
+destination_dataset_id: tsbt_fifa_orders
+location: northamerica-northeast1
+schedule: every 5 minutes
+params:
+  destination_table_name: tsbt_fifa_orders_schd
+  write_disposition: WRITE_APPEND
+  query: "select * from tsbst_fifa_orders_agg"

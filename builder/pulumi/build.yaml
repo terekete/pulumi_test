@@ -44,7 +44,7 @@ steps:
     args:
     - '-c'
     - |
-      docker build -t gcr.io/intrepid-memory-321513/pulumi:latest /workspace/builder
+      docker build -t gcr.io/intrepid-memory-321513/pulumi:latest /workspace/builder/pulumi
       docker push gcr.io/intrepid-memory-321513/pulumi:latest
     volumes:
     - name: 'ssh'

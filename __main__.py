@@ -45,6 +45,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
         if manifest and manifest['type'] == 'table':
+            validate_table_manifest(manifest)
             t = table(manifest)
             table_user_access(manifest, t)
 
@@ -82,11 +83,13 @@ def load_manifest(path):
             raise exception
 
 
-def validate_manifest(manifest, type):
-    schema = eval(open('./schema.py', 'r').read())
+def validate_table_manifest(manifest):
+    schema = eval(open('./schemas/table.py', 'r').read())
     validator = Validator(schema)
-    print(validator.validate(manifest, schema))
-    print(validator.errors)
+    if validator.validate(manifest, schema):
+        return
+    else:
+        print(validator.errors)
 
 
 f = open('/workspace/DIFF_LIST.txt')

@@ -3,6 +3,7 @@ type: table
 metadata:
   cost_center: 1
   dep: 12
+  bds: gates.mark@gmail.com
 team: tsbt
 description: "Table for FIFA aggregated orders"
 resource_name: tsbt_fifa_orders_agg
