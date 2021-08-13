@@ -86,7 +86,7 @@ def load_manifest(path):
 def validate_table_manifest(manifest):
     schema = eval(open('./schemas/table.py', 'r').read())
     validator = Validator(schema)
-    print(dir(manifest))
+    print(manifest.values())
     if validator.validate(manifest, schema):
         return
     else:
