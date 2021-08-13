@@ -92,7 +92,6 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(pprint.pprint(manifest))
         raise Exception(validator.errors)
 
 
@@ -102,7 +101,7 @@ def validate_dataset_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        raise Exception(pprint.pprint(manifest))
+        raise Exception(manifest[0])
 
 
 f = open('/workspace/DIFF_LIST.txt')
