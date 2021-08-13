@@ -77,11 +77,11 @@ def table_user_access(manifest, table_ref) -> None:
 
 def load_manifest(path):
     manifest = open(path + 'manifest.yaml', 'r')
-        print(dir(manifest))
-        try:
-            return yaml.safe_load(manifest)
-        except yaml.YAMLError as exception:
-            raise exception
+    print(dir(manifest))
+    try:
+        return yaml.safe_load(manifest)
+    except yaml.YAMLError as exception:
+        raise exception
 
 
 def validate_table_manifest(manifest):
