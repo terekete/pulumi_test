@@ -5,6 +5,7 @@ from pulumi_gcp import storage, bigquery
 from cerberus import Validator
 
 
+
 def dataset(manifest: str) -> None:
     bigquery.Dataset(
         resource_name=manifest['resource_name'],
@@ -100,7 +101,7 @@ def validate_dataset_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(dir(validator))
+        print(pprint.pprint(manifest))
         raise Exception(validator.errors)
 
 
