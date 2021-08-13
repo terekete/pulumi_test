@@ -89,8 +89,17 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(type(manifest.values()))
+        print(pretty(manifest))
         raise Exception(validator.errors)
+
+
+def pretty(d, indent=0):
+    for key, value in d.items():
+        print('\t' * indent + str(key))
+        if isinstance(value, dict):
+            pretty(value, indent+1)
+        else:
+            print('\t' * (indent+1) + str(value))
 
 
 f = open('/workspace/DIFF_LIST.txt')
