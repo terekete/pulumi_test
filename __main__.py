@@ -89,7 +89,7 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(manifest.values()[0])
+        print(type(manifest.values()))
         raise Exception(validator.errors)
 
 
