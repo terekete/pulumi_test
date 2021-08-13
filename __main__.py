@@ -67,7 +67,6 @@ def update(path: str) -> None:
 def table_user_access(manifest, table_ref) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
-    print(readers)
     bigquery.IamBinding(
         resource_name=manifest['resource_name'],
         dataset_id=manifest['dataset_id'],
@@ -101,7 +100,7 @@ def validate_dataset_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        # print(pprint.pprint(manifest))
+        print(dir(validator))
         raise Exception(validator.errors)
 
 
