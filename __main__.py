@@ -44,8 +44,8 @@ def update(path: str) -> None:
     with open(path + 'manifest.yaml') as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
-            dataset(manifest)
             validate_dataset_manifest(manifest)
+            dataset(manifest)
         if manifest and manifest['type'] == 'table':
             validate_table_manifest(manifest)
             t = table(manifest)
