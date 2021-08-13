@@ -101,8 +101,7 @@ def validate_dataset_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(pprint.pprint(manifest))
-        raise Exception(validator.errors)
+        raise Exception(pprint.pprint(manifest))
 
 
 f = open('/workspace/DIFF_LIST.txt')
