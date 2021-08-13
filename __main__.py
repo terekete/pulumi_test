@@ -91,7 +91,7 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        # print(pprint.pprint(manifest))
+        print(pprint.pprint(manifest))
         raise Exception(validator.errors)
 
 
@@ -101,7 +101,7 @@ def validate_dataset_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
-        print(pprint.pprint(manifest))
+        # print(pprint.pprint(manifest))
         raise Exception(validator.errors)
 
 
