@@ -80,7 +80,7 @@ def load_manifest(path):
         try:
             return yaml.safe_load(manifest)
         except yaml.YAMLError as exception:
-            print(manifest.name)
+            print(dir(manifest))
             raise exception
 
 
