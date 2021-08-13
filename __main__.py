@@ -46,7 +46,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
         if manifest and manifest['type'] == 'table':
-            print(pprint.pprint(manifest))
+            # print(pprint.pprint(manifest))
             validate_table_manifest(manifest)
             t = table(manifest)
             table_user_access(manifest, t)
