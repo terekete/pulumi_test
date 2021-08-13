@@ -45,6 +45,7 @@ def update(path: str) -> None:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
             dataset(manifest)
+            validate_dataset_manifest(manifest)
         if manifest and manifest['type'] == 'table':
             validate_table_manifest(manifest)
             t = table(manifest)
@@ -86,6 +87,16 @@ def load_manifest(path):
 
 def validate_table_manifest(manifest):
     schema = eval(open('./schemas/table.py', 'r').read())
+    validator = Validator(schema)
+    if validator.validate(manifest, schema):
+        return
+    else:
+        print(pprint.pprint(manifest))
+        raise Exception(validator.errors)
+
+
+def validate_dataset_manifest(manifest):
+    schema = eval(open('./schemas/dataset.py', 'r').read())
     validator = Validator(schema)
     if validator.validate(manifest, schema):
         return
