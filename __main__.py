@@ -76,10 +76,11 @@ def table_user_access(manifest, table_ref) -> None:
 
 
 def load_manifest(path):
-    with open(path + 'manifest.yaml', 'r') as stream:
+    with open(path + 'manifest.yaml', 'r') as manifest:
         try:
-            return yaml.safe_load(stream)
+            return yaml.safe_load(manifest)
         except yaml.YAMLError as exception:
+            print(manifest.name)
             raise exception
 
 
