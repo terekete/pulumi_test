@@ -81,7 +81,6 @@ def load_manifest(path):
     try:
         return yaml.safe_load(manifest)
     except yaml.YAMLError as exception:
-        print(pprint.pprint(manifest))
         raise exception
 
 
@@ -91,6 +90,7 @@ def validate_table_manifest(manifest):
     if validator.validate(manifest, schema):
         return
     else:
+        print(pprint.pprint(manifest))
         raise Exception(validator.errors)
 
 
