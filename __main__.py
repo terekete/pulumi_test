@@ -1,10 +1,11 @@
 import yaml
 import pulumi
 import pprint
+import sys
 from pulumi_gcp import storage, bigquery
 from cerberus import Validator
 
-
+sys.tracebacklimit = 0
 
 def dataset(manifest: str) -> None:
     bigquery.Dataset(
