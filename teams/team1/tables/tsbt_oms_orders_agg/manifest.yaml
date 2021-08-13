@@ -1,8 +1,8 @@
 version: v1
 type: table
 metadata:
-  cost_center: 1
-  dep: 12
+  cost_center: '1'
+  dep: '12'
   bds: gates.mark@gmail.com
 team: tsbt
 description: "Table for OMS aggregated orders"

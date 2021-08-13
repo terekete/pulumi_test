@@ -1,8 +1,8 @@
 version: v1
 type: dataset
 metadata:
-  cost_center: 1
-  dep: 2
+  cost_center: '1'
+  dep: '2'
   bds: gates.mark@gmail.com
 team: tsbt
 description: "Table for OMS orders"
