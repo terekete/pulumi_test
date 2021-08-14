@@ -51,7 +51,7 @@ def query(manifest: str) -> None:
         location='northamerica-northeast1',
         schedule=manifest['schedule'],
         params={
-            "destination_table_name_template": manifest['params']['destination_table_name_template'],
+            "destination_table_name_template": manifest['params']['destination_table_name'],
             "write_disposition": manifest['write_disposition'],
             "query": manifest['query'],
         }
