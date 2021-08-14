@@ -52,6 +52,8 @@ def update(path: str) -> None:
             validate_table_manifest(manifest)
             t = table(manifest)
             table_user_access(manifest, t)
+        if manifest and manifest['type'] == 'query':
+            validate_query_manifest(manifest)
 
 
 # def update_access(path: str) -> None:
@@ -95,17 +97,25 @@ def validate_table_manifest(manifest):
         raise Exception(validator.errors)
 
 
+def validate_query_manifest(manifest):
+    schema = eval(open('./schemas/query.py', 'r').read())
+    validator = Validator(schema)
+    if validator.validate(manifest, schema):
+        return
+    else:
+        raise Exception(validator.errors)
+
+
 def validate_dataset_manifest(manifest):
     schema = eval(open('./schemas/dataset.py', 'r').read())
     validator = Validator(schema)
     if validator.validate(manifest, schema):
         return
     else:
-        raise Exception("dataset: " + manifest)
+        raise Exception(validator.errors)
 
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
-    # update_access(path)
 
