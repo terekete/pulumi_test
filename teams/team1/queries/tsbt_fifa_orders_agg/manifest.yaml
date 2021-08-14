@@ -6,7 +6,7 @@ metadata:
   bds: gates.mark@gmail.com
 team: tsbt
 display_name: "Table for FIFA aggregated orders"
-dataset_id: sbt_fifa_orders_schd
+data_source_id: tsbt_fifa_orders_schd
 resource_name: tsbt_fifa_orders_schd
 data_refresh_window_days: 1
 destination_dataset_id: tsbt_fifa_orders
