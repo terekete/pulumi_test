@@ -35,6 +35,11 @@
         'type': 'string',
         'nullable': False
     },
+    'data_source_id': {
+        'required': True,
+        'type': 'string',
+        'nullable': False
+    },
     'display_name': {
         'required': True,
         'type': 'string',
