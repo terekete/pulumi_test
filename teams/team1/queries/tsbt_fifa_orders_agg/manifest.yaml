@@ -9,9 +9,9 @@ display_name: "Table for FIFA aggregated orders"
 data_source_id: tsbt_fifa_orders_schd
 resource_name: tsbt_fifa_orders_schd
 data_refresh_window_days: 1
-destination_dataset_id: tsbt_fifa_orders
+destination_dataset_id: tsbt_fifa_orders_temp
 schedule: every 5 minutes
 params:
-  destination_table_name: tsbt_fifa_orders_schd
+  destination_table_name: tsbst_oms_orders_agg
   write_disposition: WRITE_APPEND
   query: "select * from tsbst_fifa_orders_agg"
