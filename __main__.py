@@ -42,30 +42,20 @@ def table(manifest: str) -> None:
     )
 
 
-def update(path: str) -> None:
-    with open(path + 'manifest.yaml') as f:
-        manifest = yaml.safe_load(f)
-        if manifest and manifest['type'] == 'dataset':
-            validate_dataset_manifest(manifest)
-            dataset(manifest)
-        if manifest and manifest['type'] == 'table':
-            validate_table_manifest(manifest)
-            t = table(manifest)
-            table_user_access(manifest, t)
-        if manifest and manifest['type'] == 'query':
-            validate_query_manifest(manifest)
-
-
-# def update_access(path: str) -> None:
-#         manifest = load_manifest(path)
-#         if manifest and manifest['type'] == 'dataset':
-#             # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
-#             for reader in manifest['readers'] or []:
-#                 dataset_user_access(manifest, reader, 'READER')
-#             # for writer in manifest['writer'] or []:
-#             #     dataset_user_access(manifest, writer, 'WRITER')
-#         if manifest and manifest['type'] == 'table':
-#             table_user_access(manifest)
+def query(manifest: str) -> None:
+    return bigquery.DataTransferConfig(
+        data_refresh_window_days=manifest['data_refresh_window_days'],
+        data_source_id=manifest['data_source_id'],
+        destination_dataset_id=manifest['destination_dataset_id'],
+        display_name=manifest['display_name'],
+        location='northamerica-northeast1',
+        schedule=manifest['schedule'],
+        params={
+            "destination_table_name_template": manifest['params']['destination_table_name_template'],
+            "write_disposition": manifest['write_disposition'],
+            "query": manifest['query'],
+        }
+    )
 
 
 def table_user_access(manifest, table_ref) -> None:
@@ -78,14 +68,6 @@ def table_user_access(manifest, table_ref) -> None:
         role='roles/bigquery.dataViewer',
         members=readers
     )
-
-
-def load_manifest(path):
-    manifest = open(path + 'manifest.yaml', 'r')
-    try:
-        return yaml.safe_load(manifest)
-    except yaml.YAMLError as exception:
-        raise exception
 
 
 def validate_table_manifest(manifest):
@@ -113,6 +95,42 @@ def validate_dataset_manifest(manifest):
         return
     else:
         raise Exception(validator.errors)
+
+
+def update(path: str) -> None:
+    with open(path + 'manifest.yaml') as f:
+        manifest = yaml.safe_load(f)
+        if manifest and manifest['type'] == 'dataset':
+            validate_dataset_manifest(manifest)
+            dataset(manifest)
+        if manifest and manifest['type'] == 'table':
+            validate_table_manifest(manifest)
+            t = table(manifest)
+            table_user_access(manifest, t)
+        if manifest and manifest['type'] == 'query':
+            validate_query_manifest(manifest)
+            query(manifest)
+
+
+# def update_access(path: str) -> None:
+#         manifest = load_manifest(path)
+#         if manifest and manifest['type'] == 'dataset':
+#             # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
+#             for reader in manifest['readers'] or []:
+#                 dataset_user_access(manifest, reader, 'READER')
+#             # for writer in manifest['writer'] or []:
+#             #     dataset_user_access(manifest, writer, 'WRITER')
+#         if manifest and manifest['type'] == 'table':
+#             table_user_access(manifest)
+
+
+
+def load_manifest(path):
+    manifest = open(path + 'manifest.yaml', 'r')
+    try:
+        return yaml.safe_load(manifest)
+    except yaml.YAMLError as exception:
+        raise exception
 
 
 f = open('/workspace/DIFF_LIST.txt')
