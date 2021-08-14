@@ -52,8 +52,8 @@ def query(manifest: str) -> None:
         schedule=manifest['schedule'],
         params={
             "destination_table_name_template": manifest['params']['destination_table_name'],
-            "write_disposition": manifest['write_disposition'],
-            "query": manifest['query'],
+            "write_disposition": manifest['params']['write_disposition'],
+            "query": manifest['params']['query'],
         }
     )
 
