@@ -44,6 +44,7 @@ def table(manifest: str) -> None:
 
 def query(manifest: str) -> None:
     return bigquery.DataTransferConfig(
+        resource_name=manifest['resource_name'],
         data_refresh_window_days=manifest['data_refresh_window_days'],
         data_source_id=manifest['data_source_id'],
         destination_dataset_id=manifest['destination_dataset_id'],
