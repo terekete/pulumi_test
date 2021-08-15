@@ -118,7 +118,7 @@ def update(path: str) -> None:
             table_user_access(manifest, t)
         if manifest and manifest['type'] == 'query':
             validate_query_manifest(manifest)
-            # query(manifest)
+            query(manifest)
 
 
 # def update_access(path: str) -> None:
