@@ -146,7 +146,7 @@ def load_manifest(path):
 
 print('CURRENT WORKING: ' + os.getcwd())
 team_path = '/workspace/teams/'
-team_list = [os.path.join(path, f) for f in os.listdir(path) if os.path.isdir(os.path.join(path, f))]
+team_list = [os.path.join(team_path, f) for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
 print(team_list)
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
