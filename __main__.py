@@ -62,7 +62,7 @@ def query(manifest: str) -> None:
 def get_dataset(manifest):
     return bigquery.Dataset.get(
         resource_name=manifest['resource_name'],
-        id=manifest['resource_name']
+        id=manifest['dataset_id']
     )
 
 
@@ -111,6 +111,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
             dataset(manifest)
+            get_dataset(manifest)
         if manifest and manifest['type'] == 'table':
             validate_table_manifest(manifest)
             t = table(manifest)
