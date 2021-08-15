@@ -59,6 +59,13 @@ def query(manifest: str) -> None:
     )
 
 
+def get_dataset(manifest):
+    return bigquery.Dataset.get(
+        resource_name=manifest['resource_name'],
+        id=manifest['resource_name']
+    )
+
+
 def table_user_access(manifest, table_ref) -> None:
     readers = manifest['access']['readers']
     readers = ["user:" + reader for reader in readers]
@@ -104,6 +111,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
             dataset(manifest)
+            print(get_dataset(manifest))
         if manifest and manifest['type'] == 'table':
             validate_table_manifest(manifest)
             t = table(manifest)
