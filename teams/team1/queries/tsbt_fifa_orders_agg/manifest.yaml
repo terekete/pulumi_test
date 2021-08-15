@@ -5,7 +5,7 @@ metadata:
   dep: '12'
   bds: gates.mark@gmail.com
 team: tsbt
-display_name: "Table for FIFA aggregated orders"
+display_name: "tsbt - tsbt_oms_orders_temp"
 data_source_id: "scheduled_query"
 resource_name: tsbt_fifa_orders_schd
 data_refresh_window_days: 1
