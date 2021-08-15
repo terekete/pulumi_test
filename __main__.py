@@ -111,7 +111,7 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
             dataset(manifest)
-            print(get_dataset(manifest))
+            #print(get_dataset(manifest))
         # if manifest and manifest['type'] == 'table':
         #     validate_table_manifest(manifest)
         #     t = table(manifest)
