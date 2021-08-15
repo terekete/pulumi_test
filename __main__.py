@@ -111,14 +111,13 @@ def update(path: str) -> None:
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
             dataset(manifest)
-            #print(get_dataset(manifest))
-        # if manifest and manifest['type'] == 'table':
-        #     validate_table_manifest(manifest)
-        #     t = table(manifest)
-        #     table_user_access(manifest, t)
-        # if manifest and manifest['type'] == 'query':
-        #     validate_query_manifest(manifest)
-        #     query(manifest)
+        if manifest and manifest['type'] == 'table':
+            validate_table_manifest(manifest)
+            t = table(manifest)
+            table_user_access(manifest, t)
+        if manifest and manifest['type'] == 'query':
+            validate_query_manifest(manifest)
+            query(manifest)
 
 
 # def update_access(path: str) -> None:
