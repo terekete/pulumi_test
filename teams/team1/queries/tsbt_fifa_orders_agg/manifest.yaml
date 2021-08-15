@@ -13,5 +13,5 @@ destination_dataset_id: tsbt_fifa_orders_temp
 schedule: "first sunday of quarter 00:00"
 params:
   destination_table_name: tsbt_oms_orders_agg
-  write_disposition: WRITE_APPEND
+  write_disposition: "WRITE_APPEND"
   query: "select * from tsbst_fifa_orders_agg"

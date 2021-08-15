@@ -45,12 +45,12 @@ def table(manifest: str) -> None:
 def query(manifest: str) -> None:
     return bigquery.DataTransferConfig(
         resource_name=manifest['resource_name'],
-        data_refresh_window_days=manifest['data_refresh_window_days'],
-        data_source_id=manifest['data_source_id'],
-        destination_dataset_id=manifest['destination_dataset_id'],
         display_name=manifest['display_name'],
-        location='northamerica-northeast1',
+        # data_refresh_window_days=manifest['data_refresh_window_days'],
+        data_source_id=manifest['data_source_id'],
         schedule=manifest['schedule'],
+        destination_dataset_id=manifest['destination_dataset_id'],
+        location='northamerica-northeast1',
         params={
             "destination_table_name_template": manifest['params']['destination_table_name'],
             "write_disposition": manifest['params']['write_disposition'],
