@@ -55,7 +55,8 @@ def query(manifest: str) -> None:
             "destination_table_name_template": manifest['params']['destination_table_name'],
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
-        }
+        },
+        # labels=[{"team": "tsbt"}]
     )
 
 
@@ -117,7 +118,7 @@ def update(path: str) -> None:
             t = table(manifest)
             table_user_access(manifest, t)
         if manifest and manifest['type'] == 'query':
-            validate_query_manifest(manifest)
+            # validate_query_manifest(manifest)
             query(manifest)
 
 

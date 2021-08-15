@@ -6,7 +6,7 @@ metadata:
   bds: gates.mark@gmail.com
 team: tsbt
 display_name: "tsbt - tsbt_oms_orders_temp"
-data_source_id: "tsbt"
+data_source_id: "scheduled_query"
 resource_name: tsbt_fifa_orders_schd
 data_refresh_window_days: 1
 destination_dataset_id: tsbt_oms_orders_temp
