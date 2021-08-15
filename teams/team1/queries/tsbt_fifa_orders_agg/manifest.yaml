@@ -14,4 +14,4 @@ schedule: "first sunday of quarter 00:00"
 params:
   destination_table_name: "tsbt_oms_orders_agg"
   write_disposition: "WRITE_APPEND"
-  query: "select * from tsbt_fifa_orders_temp.tsbst_fifa_orders_agg"
+  query: "select * from tsbt_fifa_orders_temp.tsbt_fifa_orders_agg"
