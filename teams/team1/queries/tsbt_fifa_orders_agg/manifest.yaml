@@ -1,17 +1,17 @@
-# version: v1
-# type: query
-# metadata:
-#   cost_center: '1'
-#   dep: '12'
-#   bds: gates.mark@gmail.com
-# team: tsbt
-# display_name: "tsbt - tsbt_oms_orders_temp"
-# data_source_id: "scheduled_query"
-# resource_name: tsbt_fifa_orders_schd
-# data_refresh_window_days: 1
-# destination_dataset_id: tsbt_oms_orders_temp
-# schedule: "first sunday of quarter 00:00"
-# params:
-#   destination_table_name: "tsbt_oms_orders_agg"
-#   write_disposition: "WRITE_APPEND"
-#   query: "select * from tsbt_fifa_orders_temp.tsbt_fifa_orders_agg limit 100"
+version: v1
+type: query
+metadata:
+  cost_center: '1'
+  dep: '12'
+  bds: gates.mark@gmail.com
+team: tsbt
+display_name: "tsbt - tsbt_oms_orders_temp"
+data_source_id: "tsbt"
+resource_name: tsbt_fifa_orders_schd
+data_refresh_window_days: 1
+destination_dataset_id: tsbt_oms_orders_temp
+schedule: "first sunday of quarter 00:00"
+params:
+  destination_table_name: "tsbt_oms_orders_agg"
+  write_disposition: "WRITE_APPEND"
+  query: "select * from tsbt_fifa_orders_temp.tsbt_fifa_orders_agg limit 100"
