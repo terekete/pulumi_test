@@ -3,7 +3,7 @@ import pulumi
 import pprint
 import sys
 import os
-from pulumi_gcp import storage, bigquery
+from pulumi_gcp import storage, bigquery, serviceaccount
 from cerberus import Validator
 
 # sys.tracebacklimit = None
@@ -144,10 +144,19 @@ def load_manifest(path):
         raise exception
 
 
+def create_sa(name):
+    serviceaccount.Account(
+        name,
+        account_id=name + "-service-account",
+        display_name=name + "-service-account")
+
+
 print('CURRENT WORKING: ' + os.getcwd())
 team_path = '/workspace/teams/'
 team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
-print(team_list)
+for team in team_list:
+    create_sa(team)
+
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
     update(path)
