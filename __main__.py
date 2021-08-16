@@ -181,13 +181,23 @@ def pulumi_program():
 
 print('CURRENT WORKING: ' + os.getcwd())
 team_path = '/workspace/teams/'
-team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
+team_list = [
+    f
+    for f in os.listdir(team_path)
+    if os.path.isdir(os.path.join(team_path, f))
+]
+
+manifest_list = [
+    os.path.join(team_path, f)
+    for f in os.listdir(team_path)
+    if os.path.isdir(os.path.join(team_path, f))
+]
+
 for team in team_list:
     create_sa(team)
 
-
-for file in os.listdir("/workspace/teams/"):
-    print(os.path.join("/workspace/teams/", file))
+for manifest in manifest_list:
+    print(manifest_list)
 
 
 f = open('/workspace/DIFF_LIST.txt')
