@@ -196,7 +196,8 @@ for team in team_list:
     create_sa(team)
 
 
-# print(manifest_list)
+for file in os.listdir("/workspace"):
+    print(os.path.join("/workspace", file))
 
 
 f = open('/workspace/DIFF_LIST.txt')
