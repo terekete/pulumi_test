@@ -1,3 +1,4 @@
+from pulumi import resource
 import yaml
 import pulumi
 import pprint
@@ -150,6 +151,7 @@ def create_sa(name):
         account_id=name + "-service-account",
         display_name=name + "-service-account")
     serviceaccount.IAMMember(
+        resource_name=name + "-data-editor-iam",
         serviceAccountId=sa.name,
         role="roles/bigquery.dataEditor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
