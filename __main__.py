@@ -109,7 +109,7 @@ def validate_dataset_manifest(manifest):
 
 
 def update(path: str) -> None:
-    with open(path + 'manifest.yaml') as f:
+    with open(path) as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
@@ -199,7 +199,7 @@ for team in team_list:
 for path, subdirs, files in os.walk('/workspace/teams'):
     for name in files:
         if name.endswith('manifest.yaml'):
-            print(os.path.join(path, name))
+            update(os.path.join(path, name))
 
 
 
