@@ -192,6 +192,7 @@ manifest_list = [
     for f in os.listdir(team_path)
 ]
 
+
 for team in team_list:
     create_sa(team)
 
