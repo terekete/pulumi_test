@@ -196,12 +196,17 @@ for team in team_list:
     create_sa(team)
 
 
-list_subfolders_with_paths = []
-for root, dirs, files in os.walk('/workspace/teams'):
-    for dir in dirs:
-        list_subfolders_with_paths.append( os.path.join(root, dir) )
-    break
-print(list_subfolders_with_paths)
+for path, subdirs, files in os.walk('/workspace/teams'):
+    for name in files:
+        print(os.path.join(path, name))
+
+    
+# list_subfolders_with_paths = []
+# for root, dirs, files in os.walk('/workspace/teams'):
+#     for dir in dirs:
+#         list_subfolders_with_paths.append( os.path.join(root, dir) )
+#     break
+# print(list_subfolders_with_paths)
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
