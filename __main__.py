@@ -150,11 +150,11 @@ def create_sa(name):
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
-    serviceaccount.IAMMember(
-        resource_name=name + "-data-editor-iam",
-        service_account_id=sa.name,
-        role="roles/bigquery.dataEditor",
-        member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
+    # serviceaccount.IAMMember(
+    #     resource_name=name + "-data-editor-iam",
+    #     service_account_id=sa.name,
+    #     role="roles/iam.serviceAccountUser",
+    #     member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
 print('CURRENT WORKING: ' + os.getcwd())
