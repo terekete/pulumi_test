@@ -170,10 +170,22 @@ def pulumi_program():
         update(path)
 
 
-stack = pulumi.automation.create_or_select_stack(
-    stack_name="dev",
-    project_name="intrepid-memory-321513",
-    program=pulumi_program,
-    work_dir="/workspace")
+# stack = pulumi.automation.create_or_select_stack(
+#     stack_name="dev",
+#     project_name="intrepid-memory-321513",
+#     program=pulumi_program,
+#     work_dir="/workspace")
 
-print(stack)
+# print(stack)
+
+
+print('CURRENT WORKING: ' + os.getcwd())
+team_path = '/workspace/teams/'
+team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
+for team in team_list:
+    create_sa(team)
+
+
+f = open('/workspace/DIFF_LIST.txt')
+for path in f.read().splitlines():
+    update(path)
