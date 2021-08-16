@@ -196,11 +196,12 @@ for team in team_list:
     create_sa(team)
 
 
-from itertools import chain
-import glob
-result = (chain.from_iterable(glob(os.path.join(x[0], '*.yaml')) for x in os.walk('.')))
-print(type(result))
-
+list_subfolders_with_paths = []
+for root, dirs, files in os.walk('/workspace'):
+    for dir in dirs:
+        list_subfolders_with_paths.append( os.path.join(root, dir) )
+    break
+print(list_subfolders_with_paths)
 
 f = open('/workspace/DIFF_LIST.txt')
 for path in f.read().splitlines():
