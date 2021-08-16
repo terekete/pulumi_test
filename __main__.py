@@ -190,11 +190,11 @@ team_list = [
 manifest_list = [
     os.path.join(team_path, f)
     for f in os.listdir(team_path)
-    if os.path.isdir(os.path.join(team_path, f))
 ]
 
 for team in team_list:
     create_sa(team)
+
 
 print(manifest_list)
 
