@@ -199,7 +199,7 @@ for team in team_list:
 for path, subdirs, files in os.walk('/workspace/teams'):
     for name in files:
         if name.endswith('manifest.yaml'):
-            print(os.path.join(path, name))
+            update(path)
 
     
 # list_subfolders_with_paths = []
