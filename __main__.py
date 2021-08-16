@@ -145,18 +145,15 @@ def load_manifest(path):
 
 
 def create_sa(name):
-    serviceaccount.Account(
+    sa = serviceaccount.Account(
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
+    serviceaccount.IAMMember(
+        serviceAccountId=sa.name,
+        role="roles/bigquery.dataEditor",
+        member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
-
-
-stack = pulumi.automation.create_or_select_stack(
-    stack_name='dev',
-    project_name='pulumi')
-
-print(stack)
 
 print('CURRENT WORKING: ' + os.getcwd())
 team_path = '/workspace/teams/'
