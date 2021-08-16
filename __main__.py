@@ -197,7 +197,7 @@ for team in team_list:
 
 
 list_subfolders_with_paths = []
-for root, dirs, files in os.walk('/workspace'):
+for root, dirs, files in os.walk('/workspace/teams'):
     for dir in dirs:
         list_subfolders_with_paths.append( os.path.join(root, dir) )
     break
