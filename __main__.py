@@ -199,7 +199,7 @@ for team in team_list:
 for path, subdirs, files in os.walk('/workspace/teams'):
     for name in files:
         if name.endswith('manifest.yaml'):
-            update(path)
+            print(name)
 
     
 # list_subfolders_with_paths = []
@@ -209,6 +209,6 @@ for path, subdirs, files in os.walk('/workspace/teams'):
 #     break
 # print(list_subfolders_with_paths)
 
-f = open('/workspace/DIFF_LIST.txt')
-for path in f.read().splitlines():
-    update(path)
+# f = open('/workspace/DIFF_LIST.txt')
+# for path in f.read().splitlines():
+#     update(path)
