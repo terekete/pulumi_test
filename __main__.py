@@ -152,11 +152,12 @@ def create_sa(name):
 
 
 
-# stack = pulumi.automation.create_or_select_stack(
-#     stack_name='dev',
-#     project_name='pulumi',
-#     location='northamerica-northeast1')
+stack = pulumi.automation.create_or_select_stack(
+    stack_name='dev',
+    project_name='pulumi',
+    location='northamerica-northeast1')
 
+print(stack)
 
 print('CURRENT WORKING: ' + os.getcwd())
 team_path = '/workspace/teams/'
