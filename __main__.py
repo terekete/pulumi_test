@@ -196,7 +196,7 @@ for team in team_list:
     create_sa(team)
 
 
-print(manifest_list)
+# print(manifest_list)
 
 
 f = open('/workspace/DIFF_LIST.txt')
