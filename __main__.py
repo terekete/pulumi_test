@@ -187,8 +187,7 @@ for team in team_list:
 
 
 for file in os.listdir("/workspace/teams/"):
-    if file.endswith(".yaml"):
-        print(os.path.join("/workspace/teams/", file))
+    print(os.path.join("/workspace/teams/", file))
 
 
 f = open('/workspace/DIFF_LIST.txt')
