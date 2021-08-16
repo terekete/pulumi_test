@@ -198,7 +198,7 @@ for team in team_list:
 
 from itertools import chain
 result = (chain.from_iterable(glob(os.path.join(x[0], '*.yaml')) for x in os.walk('.')))
-print(result)
+print(next(result))
 
 
 f = open('/workspace/DIFF_LIST.txt')
