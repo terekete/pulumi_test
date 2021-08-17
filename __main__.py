@@ -20,6 +20,7 @@ def pulumi_program():
 # team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
 # print(team_list)
 # for team in team_list:
+
 stack = pulumi.automation.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
