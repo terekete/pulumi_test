@@ -11,4 +11,4 @@ export PULUMI_CONFIG_PASSPHRASE=test
 # pulumi refresh --yes
 # pulumi up --yes
 
-python3 __main__.py
+python3 /workspace/__main__.py
