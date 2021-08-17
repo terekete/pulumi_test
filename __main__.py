@@ -25,9 +25,9 @@ stack = pulumi.automation.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
     program=pulumi_program())
-stack.set_config("gcp:project", ConfigValue(value="intrepid-memory-321513"))
-stack.set_config("gcp:region", ConfigValue(value="northamerica-northeast1"))
-stack.preview()
+# stack.set_config("gcp:project", ConfigValue(value="intrepid-memory-321513"))
+# stack.set_config("gcp:region", ConfigValue(value="northamerica-northeast1"))
+# stack.preview()
 
 
 # from pulumi import resource
