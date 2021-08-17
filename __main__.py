@@ -11,7 +11,7 @@ stack = pulumi.automation.create_or_select_stack(
     project_name="intrepid-memory-321513",
     program=pulumi_program)
 
-
+print(dir(stack))
 
 
 # from pulumi import resource
