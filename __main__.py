@@ -8,6 +8,7 @@ def create_sa(name):
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
+    print(sa)
 
 
 def pulumi_program():
