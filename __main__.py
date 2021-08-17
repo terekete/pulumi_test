@@ -20,13 +20,13 @@ team_path = '/workspace/teams/'
 team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
 print(team_list)
 for team in team_list:
-stack = pulumi.automation.create_or_select_stack(
-    stack_name="dev",
-    project_name="intrepid-memory-321513",
-    program=pulumi_program())
-stack.set_config("gcp:project", ConfigValue(value="intrepid-memory-321513"))
-stack.set_config("gcp:region", ConfigValue(value="northamerica-northeast1"))
-stack.preview()
+    stack = pulumi.automation.create_or_select_stack(
+        stack_name="dev",
+        project_name="intrepid-memory-321513",
+        program=pulumi_program())
+    stack.set_config("gcp:project", ConfigValue(value="intrepid-memory-321513"))
+    stack.set_config("gcp:region", ConfigValue(value="northamerica-northeast1"))
+    stack.preview()
 
 
 # from pulumi import resource
