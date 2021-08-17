@@ -24,10 +24,9 @@ stack = pulumi.automation.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
     program=pulumi_program())
+stack.set_config("gcp:project", ConfigValue(value="intrepid-memory-321513"))
+stack.set_config("gcp:region", ConfigValue(value="northamerica-northeast1"))
 stack.preview()
-
-# ['__class__', '__delattr__', '__dict__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__gt__', '__hash__', '__init__', '__init_subclass__', '__le__', '__lt__', '__module__', '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__setattr__', '__sizeof__', '__str__', '__subclasshook__', '__weakref__', '_mode', '_run_pulumi_cmd_sync', 'cancel', 'create', 'create_or_select', 'destroy', 'export_stack', 'get_all_config', 'get_config', 'history', 'import_stack', 'info', 'name', 'outputs', 'preview', 'refresh', 'refresh_config', 'remove_all_config', 'remove_config', 'select', 'set_all_config', 'set_config', 'up', 'workspace']
-
 
 
 # from pulumi import resource
