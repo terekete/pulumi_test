@@ -9,4 +9,4 @@ pulumi login gs://intrepid-memory-321513-state
 # pulumi up --yes
 
 
-
+python3 __main__.py
