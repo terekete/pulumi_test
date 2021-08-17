@@ -59,11 +59,21 @@ steps:
     - -exc
     - |
       mkdir staging
+  # - name: 'gcr.io/intrepid-memory-321513/pulumi:latest'
+  #   id: 'build-pulumi'
+  #   entrypoint: 'bash'
+  #   args: [
+  #     '/workspace/scripts/build_pulumi.sh'
+  #   ]
+  #   env: [
+  #     'PROJECT_ID=${_KEY_PROJECT}'
+  #   ]
+  #   waitFor: ['create-staging-dir']
   - name: 'gcr.io/intrepid-memory-321513/pulumi:latest'
     id: 'build-pulumi'
     entrypoint: 'bash'
     args: [
-      '/workspace/scripts/build_pulumi.sh'
+      '/workspace/scripts/pulumi_up.sh'
     ]
     env: [
       'PROJECT_ID=${_KEY_PROJECT}'
