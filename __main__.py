@@ -14,6 +14,7 @@ def pulumi_program():
     print('CURRENT WORKING: ' + os.getcwd())
     team_path = '/workspace/teams/'
     team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
+    print(team_list)
     for team in team_list:
         create_sa(team)
 
