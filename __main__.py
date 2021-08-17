@@ -3,7 +3,6 @@ import os
 from pulumi_gcp import storage, serviceaccount
 
 
-
 def create_sa(name):
     sa = serviceaccount.Account(
         name,
@@ -24,9 +23,6 @@ stack = pulumi.automation.create_or_select_stack(
     project_name="intrepid-memory-321513",
     program=pulumi_program)
 
-
-ws = stack.workspace()
-ws.install_plugin("gcp", "v5.15.0")
 
 preview = stack.preview()
 print(preview)
