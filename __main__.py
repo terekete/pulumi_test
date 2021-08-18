@@ -143,11 +143,10 @@ def create_sa(name):
 
 
 def pulumi_program():
-    print('CURRENT WORKING: ' + os.getcwd())
-    team_path = '/workspace/teams/'
-    team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
-    for team in team_list:
-        create_sa(team)
+    stack = pulumi.get_stack()
+    print("STACK: ")
+    print(stack)
+    # create_sa(team)
 
 
 team_path = '/workspace/teams/'
