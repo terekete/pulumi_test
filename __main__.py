@@ -1,10 +1,8 @@
-from pulumi import resource
 import yaml
 import pulumi
-import pprint
-import sys
 import os
 from pulumi_gcp import storage, bigquery, serviceaccount
+from pulumi import automation as auto
 from cerberus import Validator
 
 # sys.tracebacklimit = None
@@ -157,6 +155,8 @@ stack = pulumi.automation.create_or_select_stack(
     project_name="intrepid-memory-321513",
     program=pulumi_program,
     work_dir="/workspace")
+stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
+stack.up(on_output=print)
 
 # print(stack)
 
