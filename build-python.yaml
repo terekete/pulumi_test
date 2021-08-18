@@ -59,7 +59,7 @@ steps:
     - -exc
     - |
       mkdir staging
-  - name: 'gcr.io/intrepid-memory-321513/python:latest'
+  - name: 'gcr.io/intrepid-memory-321513/pulumi:latest'
     id: 'build-pulumi'
     entrypoint: 'bash'
     args: [
