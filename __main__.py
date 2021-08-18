@@ -146,7 +146,7 @@ def pulumi_program():
     stack = pulumi.get_stack()
     print("STACK: ")
     print(stack)
-    # create_sa(team)
+    create_sa(stack)
 
 
 team_path = '/workspace/teams/'
