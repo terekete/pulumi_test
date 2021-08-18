@@ -156,6 +156,7 @@ stack = pulumi.automation.create_or_select_stack(
     program=pulumi_program,
     work_dir="/workspace")
 stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
+stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
 stack.up(on_output=print)
 
 # print(stack)
