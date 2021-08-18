@@ -24,6 +24,8 @@ def pulumi_program():
 
 
 try:
+    ws = auto.LocalWorkspace()
+    ws.install_plugin("gcp", "15.5.0")
     stack = pulumi.automation.create_or_select_stack(
         stack_name="dev",
         project_name="intrepid-memory-321513",
