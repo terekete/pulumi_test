@@ -3,6 +3,7 @@ import pulumi_gcp as gcp
 import os
 import pulumi.automation as auto
 
+team_path = '/workspace/teams'
 team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
     
 def create_sa(name: str):
