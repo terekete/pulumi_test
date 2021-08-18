@@ -13,7 +13,7 @@ def create_sa(name: str):
 
 
 def pulumi_program():
-    create_layer("team1")
+    create_sa("team1")
 
 
 stack = pulumi.automation.create_or_select_stack(
