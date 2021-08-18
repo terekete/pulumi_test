@@ -151,7 +151,7 @@ def pulumi_program():
 
 
 stack = pulumi.automation.create_or_select_stack(
-    stack_name="dev",
+    stack_name="test",
     project_name="intrepid-memory-321513",
     program=pulumi_program,
     work_dir="/workspace")
