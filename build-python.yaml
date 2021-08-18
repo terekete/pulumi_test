@@ -59,36 +59,16 @@ steps:
     - -exc
     - |
       mkdir staging
-  # - name: 'gcr.io/intrepid-memory-321513/pulumi:latest'
-  #   id: 'build-pulumi'
-  #   entrypoint: 'bash'
-  #   args: [
-  #     '/workspace/scripts/build_pulumi.sh'
-  #   ]
-  #   env: [
-  #     'PROJECT_ID=${_KEY_PROJECT}'
-  #   ]
-  #   waitFor: ['create-staging-dir']
   - name: 'gcr.io/intrepid-memory-321513/python:latest'
     id: 'build-pulumi'
     entrypoint: 'bash'
     args: [
-      '/workspace/scripts/pulumi_up.sh'
+      '/workspace/scripts/build_python.sh'
     ]
     env: [
       'PROJECT_ID=${_KEY_PROJECT}'
     ]
     waitFor: ['create-staging-dir']
-  # - name: 'gcr.io/intrepid-memory-321513/pulumi'
-  #   id: 'pulumi-test'
-  #   entrypoint: 'bash'
-  #   args:
-  #   - '-c'
-  #   - |
-  #     pulumi version
-  #   volumes:
-  #   - name: 'ssh'
-  #     path: /root/.ssh
 
 options:
   substitution_option: 'ALLOW_LOOSE'
