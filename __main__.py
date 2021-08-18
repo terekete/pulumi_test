@@ -152,11 +152,6 @@ def pulumi_program():
         create_sa(team)
 
 
-    f = open('/workspace/DIFF_LIST.txt')
-    for path in f.read().splitlines():
-        update(path)
-
-
 stack = pulumi.automation.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
