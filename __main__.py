@@ -157,36 +157,36 @@ def pulumi_program():
         update(path)
 
 
-# stack = pulumi.automation.create_or_select_stack(
-#     stack_name="dev",
-#     project_name="intrepid-memory-321513",
-#     program=pulumi_program,
-#     work_dir="/workspace")
+stack = pulumi.automation.create_or_select_stack(
+    stack_name="dev",
+    project_name="intrepid-memory-321513",
+    program=pulumi_program,
+    work_dir="/workspace")
 
 # print(stack)
 
 
-print('CURRENT WORKING: ' + os.getcwd())
-team_path = '/workspace/teams/'
-team_list = [
-    f
-    for f in os.listdir(team_path)
-    if os.path.isdir(os.path.join(team_path, f))
-]
+# print('CURRENT WORKING: ' + os.getcwd())
+# team_path = '/workspace/teams/'
+# team_list = [
+#     f
+#     for f in os.listdir(team_path)
+#     if os.path.isdir(os.path.join(team_path, f))
+# ]
 
-manifest_list = [
-    os.path.join(team_path, f)
-    for f in os.listdir(team_path)
-]
+# manifest_list = [
+#     os.path.join(team_path, f)
+#     for f in os.listdir(team_path)
+# ]
 
-for team in team_list:
-    create_sa(team)
+# for team in team_list:
+#     create_sa(team)
 
 
-for path, subdirs, files in os.walk('/workspace/teams'):
-    for name in files:
-        if name.endswith('manifest.yaml'):
-            update(os.path.join(path, name))
+# for path, subdirs, files in os.walk('/workspace/teams'):
+#     for name in files:
+#         if name.endswith('manifest.yaml'):
+#             update(os.path.join(path, name))
 
 
 
