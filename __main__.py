@@ -150,7 +150,16 @@ def pulumi_program():
 
 
 team_path = '/workspace/teams/'
-team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
+team_list = [
+    f
+    for f in os.listdir(team_path)
+    if os.path.isdir(os.path.join(team_path, f))
+]
+manifest_list = [
+    os.path.join(team_path, f)
+    for f in os.listdir(team_path)
+]
+print(manifest_list)
 for team in team_list:
     stack = pulumi.automation.create_or_select_stack(
         stack_name=team,

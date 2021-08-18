@@ -56,6 +56,7 @@ do
   if [[ "$file" =~ ^teams/([^/]*)/([^/]*)/([^/]*)/ ]]
   then
     echo "REMATCH[1]: ${BASH_REMATCH[1]}"
+    echo "REMATCH[1]: ${BASH_REMATCH[1]}"
     DIFF_LIST+="${BASH_REMATCH[0]}\n"
   fi
 done
