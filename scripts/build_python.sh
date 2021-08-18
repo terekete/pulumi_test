@@ -9,6 +9,6 @@ export PULUMI_CONFIG_PASSPHRASE=test
 # pulumi config set gcp:region northamerica-northeast1
 # pulumi version
 # pulumi refresh --yes
-# pulumi up --yes
+pulumi up --yes
 
-python /workspace/main.py
+
