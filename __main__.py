@@ -4,6 +4,18 @@ import os
 import pulumi.automation as auto
 
 
+
+def create_sa(name: str):
+    return gcp.serviceaccount.Account(
+        name,
+        account_id=name + "-service-account",
+        display_name=name + "-service-account")
+
+
+def pulumi_program():
+    create_layer("team1")
+
+
 stack = pulumi.automation.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
@@ -24,8 +36,6 @@ stack = pulumi.automation.create_or_select_stack(
 
 
 
-# def pulumi_program():
-#     return create_layer("team1")
 
 
 # try:
