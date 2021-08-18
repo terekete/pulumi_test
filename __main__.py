@@ -13,10 +13,10 @@ def create_sa(name: str):
 
 
 def pulumi_program():
-    create_sa("team1")
+    sa = create_sa("team1")
 
 
-stack = pulumi.automation.create_or_select_stack(
+stack = auto.create_or_select_stack(
     stack_name="dev",
     project_name="intrepid-memory-321513",
     program=pulumi_program())
