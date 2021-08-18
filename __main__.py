@@ -22,10 +22,7 @@ def pulumi_program():
     return create_layer("team1")
 
 
-
 try:
-    ws = auto.LocalWorkspace()
-    ws.install_plugin("gcp", "5.15.0")
     stack = pulumi.automation.create_or_select_stack(
         stack_name="dev",
         project_name="intrepid-memory-321513",
@@ -34,4 +31,4 @@ try:
     stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
     stack.up(on_output=print)
 except auto.StackAlreadyExistsError:
-    flash(f"Error: ***")
+    print(f"Error: ***")
