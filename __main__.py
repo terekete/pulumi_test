@@ -124,19 +124,6 @@ def update(path: str) -> None:
             query(manifest)
 
 
-# def update_access(path: str) -> None:
-#         manifest = load_manifest(path)
-#         if manifest and manifest['type'] == 'dataset':
-#             # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
-#             for reader in manifest['readers'] or []:
-#                 dataset_user_access(manifest, reader, 'READER')
-#             # for writer in manifest['writer'] or []:
-#             #     dataset_user_access(manifest, writer, 'WRITER')
-#         if manifest and manifest['type'] == 'table':
-#             table_user_access(manifest)
-
-
-
 def load_manifest(path):
     manifest = open(path + 'manifest.yaml', 'r')
     try:
