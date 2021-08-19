@@ -142,22 +142,25 @@ def create_sa(name):
     #     member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
-files = '/workspace/teams/'
-for path, subdirs, files in os.walk(files):
-    files = set([
-        files
-        for path in files
-        if path.endswith('manifest.yaml')
-    ])
+teams_root = '/workspace/teams/'
+def get_files(root: str):
+    files = []
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            if name.endswith('manifest.yaml'):
+                files.append(path)
+    return files
 
+
+manifests = get_files(teams_root)
 print('FILES: ')
-print(files)
+print(manifests)
 
 
 import re
 teams = set([
     re.search('teams/(.+?)/+', team).group(1)
-    for team in files
+    for team in manifests
     if re.search('teams/(.+?)/+', team)
 ])
 print('TEAMS: ')
