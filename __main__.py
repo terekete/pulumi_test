@@ -143,7 +143,7 @@ def create_sa(name):
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
     print('SERVICE_ACCOUNT_NAME:')
-    print(dir(sa.name))
+    print(dir(sa.name.apply(lambda x: x.name)))
     return sa
 
 
