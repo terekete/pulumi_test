@@ -156,7 +156,8 @@ team_list = [
 ]
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
-for path in f.read().splitlines():
+print(team_diff)
+for path in team_diff.read().splitlines():
     print("DIFF_TEAM: " + path)
 
 manifest_list = [
