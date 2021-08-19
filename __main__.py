@@ -144,7 +144,7 @@ def create_sa(name):
     serviceaccount.IAMMember(
         resource_name=name + "-data-editor-iam",
         service_account_id=sa.name,
-        role="roles/bigquery.dataOwner",
+        role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
