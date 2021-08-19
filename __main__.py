@@ -57,7 +57,7 @@ def query(manifest: str, sa) -> None:
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
         },
-        service_account_name=sa.name
+        # service_account_name=sa.name
         # labels=[{"team": "tsbt"}]
     )
 
@@ -142,6 +142,7 @@ def create_sa(name):
         service_account_id=sa.name,
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
+    print(dir(sa))
 
 
 def get_manifests(root: str):
