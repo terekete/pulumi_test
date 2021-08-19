@@ -191,7 +191,7 @@ def pulumi_program():
 # team_diff = set([team for team in team_diff.read().splitlines()])
 
 
-for path in files:
+for path in manifests:
     team = re.search('teams/(.+?)/+', path).group(1)
     if team:
         stack = pulumi.automation.create_or_select_stack(
