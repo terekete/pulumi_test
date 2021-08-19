@@ -22,12 +22,12 @@ git remote -vv
 {
   git branch -D base-branch
 } || {
-  echo "continuing ..."
+  printf "\n"
 }
 {
   git branch -D feature
 } || {
-  echo "continuing ..."
+  printf "\n"
 }
 
 if [[ ! -z "${PR_NUMBER}" ]]; then
@@ -45,7 +45,6 @@ git status
 
 
 #! /bin/bash
-BUILD_DIFF_FILE="build-diff-file.txt"
 DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
 
 DIFF_TEAM=""
@@ -64,5 +63,5 @@ done
 printf "${DIFF_TEAM}" | sort | uniq > DIFF_TEAM.txt
 printf "${DIFF_LIST}" | sort | uniq > DIFF_LIST.txt
 
-printf "DIFF_LIST:\n"
+printf "\nDIFF_LIST:\n"
 cat DIFF_LIST.txt
