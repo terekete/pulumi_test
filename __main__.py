@@ -203,19 +203,3 @@ for path in manifests:
         stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
         stack.up(on_output=print)
 
-
-# manifest_list = [
-#     os.path.join(team_path, f)
-#     for f in os.listdir(team_path)
-# ]
-
-# for team in team_list:
-#     create_sa(team)
-
-
-# for path, subdirs, files in os.walk('/workspace/teams'):
-#     for name in files:
-#         if name.endswith('manifest.yaml'):
-#             update(os.path.join(path, name))
-
-
