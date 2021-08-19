@@ -144,11 +144,11 @@ def create_sa(name):
 
 files = '/workspace/teams/'
 for path, subdirs, files in os.walk(files):
-    files = [
-        path
+    files = set([
+        files
         for path in files
         if path.endswith('manifest.yaml')
-    ]
+    ])
 
 print('FILES: ')
 print(files)
