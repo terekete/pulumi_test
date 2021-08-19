@@ -149,7 +149,6 @@ def pulumi_program():
 
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
-print(team_diff)
 team_diff = set([team for team in team_diff.read().splitlines()])
 print(team_diff)
 
