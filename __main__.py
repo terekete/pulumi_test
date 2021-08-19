@@ -2,7 +2,7 @@ import yaml
 import re
 import pulumi
 import os
-from pulumi_gcp import storage, bigquery, serviceaccount
+from pulumi_gcp import storage, bigquery, serviceaccount, projects
 from pulumi import automation as auto
 from cerberus import Validator
 
@@ -168,7 +168,12 @@ teams = set([
 
 def pulumi_program():
     team_stack = pulumi.get_stack()
-    create_sa(team_stack)
+    project = pulumi.get_project()
+    projects.IAMMember(
+        resource_name='sa-transfer-token',
+        role="roles/iam.serviceAccountShortTermTokenMinter",
+        member=f"serviceAccount:service-{project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
+    sa = create_sa(team_stack)
     for manifest in manifests:
         if team_stack in manifest:
             update(manifest + '/manifest.yaml')
