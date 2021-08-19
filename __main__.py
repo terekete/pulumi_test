@@ -8,6 +8,7 @@ from cerberus import Validator
 
 # sys.tracebacklimit = None
 
+
 def dataset(manifest: str) -> None:
     bigquery.Dataset(
         resource_name=manifest['resource_name'],
@@ -57,7 +58,7 @@ def query(manifest: str, sa) -> None:
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
         },
-        service_account_name=sa.name
+        service_account_name=sa
         # labels=[{"team": "tsbt"}]
     )
 
@@ -143,7 +144,7 @@ def create_sa(name):
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
     print('SERVICE_ACCOUNT_NAME:')
-    print(dir(sa.name.apply(lambda x: x.name)))
+    sa = sa.name.apply(lambda x: x.name)
     return sa
 
 
