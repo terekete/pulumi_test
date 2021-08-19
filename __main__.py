@@ -43,7 +43,7 @@ def table(manifest: str) -> None:
     )
 
 
-def query(manifest: str) -> None:
+def query(manifest: str, sa) -> None:
     return bigquery.DataTransferConfig(
         resource_name=manifest['resource_name'],
         display_name=manifest['display_name'],
@@ -57,6 +57,7 @@ def query(manifest: str) -> None:
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
         },
+        opts=pulumi.ResourceOptions(depends_on=[sa])
         # labels=[{"team": "tsbt"}]
     )
 
@@ -107,7 +108,7 @@ def validate_dataset_manifest(manifest):
         raise Exception(validator.errors)
 
 
-def update(path: str) -> None:
+def update(path, sa) -> None:
     with open(path) as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
@@ -120,7 +121,7 @@ def update(path: str) -> None:
             table_user_access(manifest, t)
         if manifest and manifest['type'] == 'query':
             # validate_query_manifest(manifest)
-            query(manifest)
+            query(manifest, sa)
 
 
 def load_manifest(path):
@@ -136,11 +137,6 @@ def create_sa(name):
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
-    serviceaccount.IAMMember(
-        resource_name=name + "-sa-user-iam",
-        service_account_id=sa.name,
-        role="roles/iam.serviceAccountUser",
-        member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
     serviceaccount.IAMMember(
         resource_name=name + "-data-editor-iam",
         service_account_id=sa.name,
@@ -169,14 +165,14 @@ teams = set([
 def pulumi_program():
     team_stack = pulumi.get_stack()
     project = pulumi.get_project()
-    projects.IAMMember(
-        resource_name='sa-transfer-token',
-        role="roles/iam.serviceAccountShortTermTokenMinter",
-        member=f"serviceAccount:service-307024666264@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
+    # projects.IAMMember(
+    #     resource_name='sa-transfer-token',
+    #     role="roles/iam.serviceAccountShortTermTokenMinter",
+    #     member=f"serviceAccount:service-307024666264@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
     sa = create_sa(team_stack)
     for manifest in manifests:
         if team_stack in manifest:
-            update(manifest + '/manifest.yaml')
+            update(manifest + '/manifest.yaml', sa)
 
 
 for team in teams:
