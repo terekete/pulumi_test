@@ -148,6 +148,7 @@ files = set([
     for path in os.listdir(files)
     if os.path.isdir(os.path.join(files, path))
 ])
+print('FILES: ')
 print(files)
 
 
@@ -157,6 +158,7 @@ teams = set([
     for team in files
     if re.search('teams/(.+?)/+', team)
 ])
+print('TEAMS: ')
 print(teams)
 
 
@@ -180,19 +182,21 @@ def pulumi_program():
 #             update(file_path + 'manifest.yaml')
 
 
-team_diff = open('/workspace/DIFF_TEAM.txt')
-team_diff = set([team for team in team_diff.read().splitlines()])
+# team_diff = open('/workspace/DIFF_TEAM.txt')
+# team_diff = set([team for team in team_diff.read().splitlines()])
 
 
-for team in team_diff:
-    stack = pulumi.automation.create_or_select_stack(
-        stack_name=team,
-        project_name="intrepid-memory-321513",
-        program=pulumi_program,
-        work_dir="/workspace")
-    stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
-    stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
-    stack.up(on_output=print)
+for path in files:
+    team = re.search('teams/(.+?)/+', path).group(1)
+    if team:
+        stack = pulumi.automation.create_or_select_stack(
+            stack_name=team,
+            project_name="intrepid-memory-321513",
+            program=pulumi_program,
+            work_dir="/workspace")
+        stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
+        stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
+        stack.up(on_output=print)
 
 
 # manifest_list = [
