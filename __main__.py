@@ -136,7 +136,7 @@ def create_sa(name):
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
-    serviceaccount.IAMMember(
+    serviceaccount.IAMBinding(
         resource_name=name + "-sa-user-iam",
         service_account_id=sa.name,
         role="roles/iam.serviceAccountUser",
