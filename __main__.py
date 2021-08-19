@@ -175,31 +175,13 @@ def pulumi_program():
             update(manifest + '/manifest.yaml')
 
 
-# file_diff = open('/workspace/DIFF_LIST.txt')
-# file_diff = set([file for file in file_diff.read().splitlines()])
-
-
-# def pulumi_program():
-#     team_stack = pulumi.get_stack()
-#     create_sa(team_stack)
-#     for file_path in file_diff:
-#         if team_stack in file_path:
-#             update(file_path + 'manifest.yaml')
-
-
-# team_diff = open('/workspace/DIFF_TEAM.txt')
-# team_diff = set([team for team in team_diff.read().splitlines()])
-
-
-for path in manifests:
-    team = re.search('teams/(.+?)/+', path).group(1)
-    if team:
-        stack = pulumi.automation.create_or_select_stack(
-            stack_name=team,
-            project_name="intrepid-memory-321513",
-            program=pulumi_program,
-            work_dir="/workspace")
-        stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
-        stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
-        stack.up(on_output=print)
+for team in teams:
+    stack = pulumi.automation.create_or_select_stack(
+        stack_name=team,
+        project_name="intrepid-memory-321513",
+        program=pulumi_program,
+        work_dir="/workspace")
+    stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
+    stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
+    stack.up(on_output=print)
 
