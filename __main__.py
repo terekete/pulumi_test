@@ -6,8 +6,6 @@ from pulumi_gcp import storage, bigquery, serviceaccount, projects
 from pulumi import automation as auto
 from cerberus import Validator
 
-# sys.tracebacklimit = None
-
 
 def dataset(manifest: str) -> None:
     bigquery.Dataset(
@@ -58,7 +56,6 @@ def query(manifest: str, sa) -> None:
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
         },
-        service_account_name=sa
         # labels=[{"team": "tsbt"}]
     )
 
@@ -143,7 +140,6 @@ def create_sa(name):
         service_account_id=sa.name,
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
-    print('SERVICE_ACCOUNT_NAME:')
     return sa
 
 
@@ -168,14 +164,9 @@ teams = set([
 def pulumi_program():
     team_stack = pulumi.get_stack()
     project = pulumi.get_project()
-    # projects.IAMMember(
-    #     resource_name='sa-transfer-token',
-    #     role="roles/iam.serviceAccountShortTermTokenMinter",
-    #     member=f"serviceAccount:service-307024666264@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
-    sa = create_sa(team_stack)
     for manifest in manifests:
         if team_stack in manifest:
-            update(manifest + '/manifest.yaml', sa)
+            update(manifest + '/manifest.yaml')
 
 
 for team in teams:
