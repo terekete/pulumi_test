@@ -142,9 +142,17 @@ def create_sa(name):
     #     member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
+file_diff = open('/workspace/DIFF_LIST.txt')
+file_diff = set([file for file in file_diff.read().splitlines()])
+print(file_diff)
+
+
 def pulumi_program():
-    stack = pulumi.get_stack()
-    create_sa(stack)
+    team_stack = pulumi.get_stack()
+    create_sa(team_stack)
+    for file_path in file_diff:
+        if team_stack in file_path:
+            update(file_path)
 
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
