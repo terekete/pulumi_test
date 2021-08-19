@@ -1,4 +1,5 @@
 import yaml
+import re
 import pulumi
 import os
 from pulumi_gcp import storage, bigquery, serviceaccount
@@ -142,7 +143,6 @@ def create_sa(name):
     #     member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
-teams_root = '/workspace/teams/'
 def get_manifests(root: str):
     manifest_list = []
     for path, subdirs, files in os.walk(root):
@@ -152,19 +152,13 @@ def get_manifests(root: str):
     return set(manifest_list)
 
 
+teams_root = '/workspace/teams/'
 manifests = get_manifests(teams_root)
-print('FILES: ')
-print(manifests)
-
-
-import re
 teams = set([
     re.search('teams/(.+?)/+', team).group(1)
     for team in manifests
     if re.search('teams/(.+?)/+', team)
 ])
-print('TEAMS: ')
-print(teams)
 
 
 def pulumi_program():
@@ -176,6 +170,7 @@ def pulumi_program():
 
 
 for team in teams:
+    print('########')
     stack = pulumi.automation.create_or_select_stack(
         stack_name=team,
         project_name="intrepid-memory-321513",
