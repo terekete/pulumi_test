@@ -106,7 +106,7 @@ def validate_dataset_manifest(manifest):
         raise Exception(validator.errors)
 
 
-def update(path, sa) -> None:
+def update(path) -> None:
     with open(path) as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
@@ -119,7 +119,7 @@ def update(path, sa) -> None:
             table_user_access(manifest, t)
         if manifest and manifest['type'] == 'query':
             # validate_query_manifest(manifest)
-            query(manifest, sa)
+            query(manifest)
 
 
 def load_manifest(path):
