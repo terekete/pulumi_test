@@ -144,7 +144,6 @@ def create_sa(name):
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
     print('SERVICE_ACCOUNT_NAME:')
-    sa = sa.name.apply(lambda x: x.name)
     return sa
 
 
@@ -189,4 +188,3 @@ for team in teams:
     stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
     stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
     stack.up(on_output=print)
-
