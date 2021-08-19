@@ -144,13 +144,11 @@ def create_sa(name):
 
 def pulumi_program():
     stack = pulumi.get_stack()
-    print("STACK: " + stack)
     create_sa(stack)
 
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
 team_diff = set([team for team in team_diff.read().splitlines()])
-print(team_diff)
 
 
 for team in team_diff:
