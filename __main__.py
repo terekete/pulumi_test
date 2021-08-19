@@ -42,7 +42,7 @@ def table(manifest: str) -> None:
     )
 
 
-def query(manifest: str, sa) -> None:
+def query(manifest: str) -> None:
     return bigquery.DataTransferConfig(
         resource_name=manifest['resource_name'],
         display_name=manifest['display_name'],
