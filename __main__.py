@@ -169,10 +169,12 @@ teams = set([
 def pulumi_program():
     team_stack = pulumi.get_stack()
     project = pulumi.get_project()
-    projects.IAMMember(
-        resource_name='sa-transfer-token',
-        role="roles/iam.serviceAccountShortTermTokenMinter",
-        member=f"serviceAccount:service-{project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
+    print("PROJECT: " + project)
+    print(dir(project))
+    # projects.IAMMember(
+    #     resource_name='sa-transfer-token',
+    #     role="roles/iam.serviceAccountShortTermTokenMinter",
+    #     member=f"serviceAccount:service-{project.number}@gcp-sa-bigquerydatatransfer.iam.gserviceaccount.com")
     sa = create_sa(team_stack)
     for manifest in manifests:
         if team_stack in manifest:
