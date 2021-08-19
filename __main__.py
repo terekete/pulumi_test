@@ -144,8 +144,7 @@ def create_sa(name):
 
 def pulumi_program():
     stack = pulumi.get_stack()
-    print("STACK: ")
-    print(stack)
+    print("STACK: " + stack)
     create_sa(stack)
 
 
@@ -155,6 +154,11 @@ team_list = [
     for f in os.listdir(team_path)
     if os.path.isdir(os.path.join(team_path, f))
 ]
+
+team_diff = open('/workspace/DIFF_TEAM.txt')
+for path in f.read().splitlines():
+    print("DIFF_TEAM: " + path)
+
 manifest_list = [
     os.path.join(team_path, f)
     for f in os.listdir(team_path)
@@ -169,8 +173,6 @@ for team in team_list:
     stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
     stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
     stack.up(on_output=print)
-
-# print(stack)
 
 
 # print('CURRENT WORKING: ' + os.getcwd())
@@ -196,7 +198,3 @@ for team in team_list:
 #             update(os.path.join(path, name))
 
 
-
-# f = open('/workspace/DIFF_LIST.txt')
-# for path in f.read().splitlines():
-#     update(path)
