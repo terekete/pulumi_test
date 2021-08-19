@@ -148,24 +148,13 @@ def pulumi_program():
     create_sa(stack)
 
 
-team_path = '/workspace/teams/'
-team_list = [
-    f
-    for f in os.listdir(team_path)
-    if os.path.isdir(os.path.join(team_path, f))
-]
-
 team_diff = open('/workspace/DIFF_TEAM.txt')
 print(team_diff)
-for path in team_diff.read().splitlines():
-    print("DIFF_TEAM: " + path)
+team_diff = set([team for team in team_diff.read().splitlines()])
+print(team_diff)
 
-manifest_list = [
-    os.path.join(team_path, f)
-    for f in os.listdir(team_path)
-]
-print(manifest_list)
-for team in team_list:
+
+for team in team_diff:
     stack = pulumi.automation.create_or_select_stack(
         stack_name=team,
         project_name="intrepid-memory-321513",
