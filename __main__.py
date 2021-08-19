@@ -143,11 +143,10 @@ def create_sa(name):
 
 
 files = '/workspace/teams/'
-files = set([
-    path
-    for path in os.listdir(files)
-    if os.path.isdir(os.path.join(files, path))
-])
+files = [
+    os.path.join(files, f)
+    for f in os.listdir(files)
+]
 print('FILES: ')
 print(files)
 
