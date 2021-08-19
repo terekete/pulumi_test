@@ -57,7 +57,7 @@ def query(manifest: str, sa) -> None:
             "write_disposition": manifest['params']['write_disposition'],
             "query": manifest['params']['query'],
         },
-        # service_account_name=sa.name
+        service_account_name=sa.name
         # labels=[{"team": "tsbt"}]
     )
 
