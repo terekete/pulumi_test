@@ -152,7 +152,7 @@ def pulumi_program():
     create_sa(team_stack)
     for file_path in file_diff:
         if team_stack in file_path:
-            update(file_path)
+            update(file_path + 'manifest.yaml')
 
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
