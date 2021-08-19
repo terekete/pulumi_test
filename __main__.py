@@ -142,6 +142,7 @@ def create_sa(name):
         service_account_id=sa.name,
         role="roles/editor",
         member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
+    print('SERVICE_ACCOUNT_NAME:')
     print(sa.name)
     return sa
 
