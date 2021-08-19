@@ -142,17 +142,42 @@ def create_sa(name):
     #     member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
 
 
-file_diff = open('/workspace/DIFF_LIST.txt')
-file_diff = set([file for file in file_diff.read().splitlines()])
-print(file_diff)
+files = '/workspace/teams/'
+files = set([
+    path
+    for path in os.listdir(files)
+    if os.path.isdir(os.path.join(files, path))
+])
+print(files)
+
+
+import re
+teams = set([
+    re.search('teams/(.+?)/+', team).group(1)
+    for team in files
+    if re.search('teams/(.+?)/+', team)
+])
+print(teams)
 
 
 def pulumi_program():
     team_stack = pulumi.get_stack()
     create_sa(team_stack)
-    for file_path in file_diff:
-        if team_stack in file_path:
-            update(file_path + 'manifest.yaml')
+    # for file_path in file_diff:
+    #     if team_stack in file_path:
+    #         update(file_path + 'manifest.yaml')
+
+
+# file_diff = open('/workspace/DIFF_LIST.txt')
+# file_diff = set([file for file in file_diff.read().splitlines()])
+
+
+# def pulumi_program():
+#     team_stack = pulumi.get_stack()
+#     create_sa(team_stack)
+#     for file_path in file_diff:
+#         if team_stack in file_path:
+#             update(file_path + 'manifest.yaml')
 
 
 team_diff = open('/workspace/DIFF_TEAM.txt')
@@ -169,14 +194,6 @@ for team in team_diff:
     stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
     stack.up(on_output=print)
 
-
-# print('CURRENT WORKING: ' + os.getcwd())
-# team_path = '/workspace/teams/'
-# team_list = [
-#     f
-#     for f in os.listdir(team_path)
-#     if os.path.isdir(os.path.join(team_path, f))
-# ]
 
 # manifest_list = [
 #     os.path.join(team_path, f)
