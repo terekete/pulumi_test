@@ -48,6 +48,7 @@ git status
 BUILD_DIFF_FILE="build-diff-file.txt"
 DIFF=$(git diff --name-only origin/"${BASE_BRANCH}"...HEAD)
 
+DIFF_TEAM=""
 DIFF_LIST=""
 
 
@@ -55,39 +56,13 @@ for file in $DIFF
 do
   if [[ "$file" =~ ^teams/([^/]*)/([^/]*)/([^/]*)/ ]]
   then
-    echo "REMATCH[1]: ${BASH_REMATCH[1]}"
-    echo "REMATCH[1]: ${BASH_REMATCH[1]}"
+    DIFF_TEAM+="${BASH_REMATCH[1]}\n"
     DIFF_LIST+="${BASH_REMATCH[0]}\n"
   fi
 done
 
+printf "${DIFF_TEAM}" | sort | uniq > DIFF_TEAM.txt
 printf "${DIFF_LIST}" | sort | uniq > DIFF_LIST.txt
 
-cat DIFF_LIST.txt > DIFF_TOTAL.txt
-
-touch CONFLICTS.txt
-cat POTENTIAL_CONFLICTS.txt | while read file
-do
-  cat DIFF_TOTAL.txt | while read diff_path
-  do
-    if [[ $file =~ $diff_path ]]; then
-      echo $file >> CONFLICTS.txt
-    fi
-  done
-done
-
-if [[ -s DIFF_LIST.txt ]]; then
-  printf "\n*** Change occured on team definition ***\n"
-  cat DIFF_LIST.txt
-fi
-
-if [[ -s CONFLICTS.txt ]]; then
-  echo ""
-  echo "Warning - there are conflicting changes in the base branch."
-  echo "The following files have been changed in the base:"
-  cat CONFLICTS.txt
-fi
-
-
-ls -la
-cat DIFF_TOTAL.txt
+printf "DIFF_LIST:\n"
+cat DIFF_LIST.txt
