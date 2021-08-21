@@ -1,12 +1,11 @@
 import yaml
+import re
 import pulumi
-import pprint
-import sys
 import os
-from pulumi_gcp import storage, bigquery, serviceaccount
+from pulumi_gcp import storage, bigquery, serviceaccount, projects
+from pulumi import automation as auto
 from cerberus import Validator
 
-# sys.tracebacklimit = None
 
 def dataset(manifest: str) -> None:
     bigquery.Dataset(
@@ -107,8 +106,8 @@ def validate_dataset_manifest(manifest):
         raise Exception(validator.errors)
 
 
-def update(path: str) -> None:
-    with open(path + 'manifest.yaml') as f:
+def update(path) -> None:
+    with open(path) as f:
         manifest = yaml.safe_load(f)
         if manifest and manifest['type'] == 'dataset':
             validate_dataset_manifest(manifest)
@@ -123,19 +122,6 @@ def update(path: str) -> None:
             query(manifest)
 
 
-# def update_access(path: str) -> None:
-#         manifest = load_manifest(path)
-#         if manifest and manifest['type'] == 'dataset':
-#             # [dataset_user_access(manifest, reader, 'READER') for reader in manifest['readers'] if not None]
-#             for reader in manifest['readers'] or []:
-#                 dataset_user_access(manifest, reader, 'READER')
-#             # for writer in manifest['writer'] or []:
-#             #     dataset_user_access(manifest, writer, 'WRITER')
-#         if manifest and manifest['type'] == 'table':
-#             table_user_access(manifest)
-
-
-
 def load_manifest(path):
     manifest = open(path + 'manifest.yaml', 'r')
     try:
@@ -145,19 +131,51 @@ def load_manifest(path):
 
 
 def create_sa(name):
-    serviceaccount.Account(
+    sa = serviceaccount.Account(
         name,
         account_id=name + "-service-account",
         display_name=name + "-service-account")
+    serviceaccount.IAMMember(
+        resource_name=name + "-data-editor-iam",
+        service_account_id=sa.name,
+        role="roles/editor",
+        member=sa.email.apply(lambda email: f"serviceAccount:{email}"))
+    return sa
 
 
-print('CURRENT WORKING: ' + os.getcwd())
-team_path = '/workspace/teams/'
-team_list = [f for f in os.listdir(team_path) if os.path.isdir(os.path.join(team_path, f))]
-for team in team_list:
-    create_sa(team)
+def get_manifests(root: str):
+    manifest_list = []
+    for path, subdirs, files in os.walk(root):
+        for name in files:
+            if name.endswith('manifest.yaml'):
+                manifest_list.append(path)
+    return set(manifest_list)
 
-f = open('/workspace/DIFF_LIST.txt')
-for path in f.read().splitlines():
-    update(path)
 
+teams_root = '/workspace/teams/'
+manifests = get_manifests(teams_root)
+teams = set([
+    re.search('teams/(.+?)/+', team).group(1)
+    for team in manifests
+    if re.search('teams/(.+?)/+', team)
+])
+
+
+def pulumi_program():
+    team_stack = pulumi.get_stack()
+    project = pulumi.get_project()
+    for manifest in manifests:
+        if team_stack in manifest:
+            update(manifest + '/manifest.yaml')
+
+
+for team in teams:
+    print('########')
+    stack = pulumi.automation.create_or_select_stack(
+        stack_name=team,
+        project_name="intrepid-memory-321513",
+        program=pulumi_program,
+        work_dir="/workspace")
+    stack.set_config("gcp:region", auto.ConfigValue("northamerica-northeast"))
+    stack.set_config("gcp:project", auto.ConfigValue("intrepid-memory-321513"))
+    stack.up(on_output=print)

@@ -1,0 +1,3 @@
+cerberus
+pulumi
+pulumi_gcp
