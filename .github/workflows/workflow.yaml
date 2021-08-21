@@ -16,6 +16,8 @@ jobs:
           command: preview
           stack-name: dev
           cloud-url: gs://intrepid-memory-321513-state
+          refresh: true
+          diff: true
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
