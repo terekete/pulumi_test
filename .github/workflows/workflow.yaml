@@ -1,10 +1,6 @@
 name: 'pulumi ci'
-
 on:
-  push:
-    - main
-  pull_request:
-
+  - pull_request
 jobs:
   preview:
     name: preview
