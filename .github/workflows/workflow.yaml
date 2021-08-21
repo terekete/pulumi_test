@@ -18,5 +18,4 @@ jobs:
           cloud-url: gs://intrepid-memory-321513-state
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
-
         
